@@ -4,6 +4,8 @@
   
   .singlePostWrapper {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     /* padding-right: 0; */
   }
   
@@ -61,4 +63,10 @@
     margin-left: 20px;
     font-size: 30px;
     font-weight: 600;
+  }
+
+  .singlePostButton{
+    border: none;
+    background-color: teal;
+    padding: 5px;
   }

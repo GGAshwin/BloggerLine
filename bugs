@@ -1,0 +1,3 @@
+User being deleted automatically and still being logged in [cleared]
+wrong credentials will crash the node server
+update user is broken - [the updated user is not reflected immediately but will change after login]
