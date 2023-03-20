@@ -1,11 +1,14 @@
 .singlePost {
     flex: 9;
+    /* background-color: #242424; */
+    background-color: #060602;
   }
   
   .singlePostWrapper {
-    padding: 20px;
+    padding: 20px 40px;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
     /* padding-right: 0; */
   }
   
@@ -14,6 +17,7 @@
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+    box-shadow: rgba(159, 159, 167, 0.2) 0px 7px 29px 0px;
   }
   
   .singlePostTitle {
@@ -21,6 +25,8 @@
     margin: 10px;
     font-size: 28px;
     font-family: "Lora", sans-serif;
+    color: #fff;
+    font-variant: small-caps;
   }
   
   .singlePostEdit {
@@ -53,10 +59,18 @@
     margin-left: 5px;
   }
   
+  .singlePostAuthor a{
+    color: #fff;
+  }
+
   .singlePostDesc {
-    color: #666;
+    /* color: #666; */
+    color: #fff;
     font-size: 18px;
     line-height: 25px;
+    /* This is the one you are looking for */
+    white-space: pre-wrap;
+    text-align: justify;
   }
   
   .singlePostDesc::first-letter {
@@ -69,4 +83,25 @@
     border: none;
     background-color: teal;
     padding: 5px;
+  }
+
+  .link{
+    color: white !important;
+  }
+
+  .tag-section{
+    text-align: center;
+    margin: 10px;
+  }
+
+  .tag-section ul{
+    padding: 0;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tag-section ul a{
+    margin: 0 10px;
   }

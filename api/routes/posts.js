@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 // Create
 // use async function if operations with database is involved
 router.post('/', async (req, res) => {
+    console.log(req.body);
     const newPost = new Post(req.body)
     try {
         const savePost = await newPost.save()

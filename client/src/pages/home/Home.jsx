@@ -27,7 +27,7 @@ export default function Home() {
         <Header />
         <div className="home">
           <Post posts={posts} />
-          <Sidebar />
+          {/* <Sidebar /> */}
         </div>
     </>
   )

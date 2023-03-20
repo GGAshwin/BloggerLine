@@ -18,10 +18,10 @@ export default function Settings() {
     e.preventDefault()
     const payload = {
       userId: user._id,
-      username: username,
-      email: email,
-      password: password,
-      profilePic: profilePic
+      username: username || user.username,
+      email: email || user.email,
+      password: password || user.password,
+      profilePic: profilePic || user.profilePic
     }
     try {
       await axios.put('/user/' + user._id, payload)
@@ -62,7 +62,7 @@ export default function Settings() {
               user.profilePic &&
               <img
                 className="topImg"
-                src={user.prfilePic}
+                src={user.profilePic}
                 alt=""
               />
               ||
@@ -102,7 +102,7 @@ export default function Settings() {
           </button>
         </form>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }

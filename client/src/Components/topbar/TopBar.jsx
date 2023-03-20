@@ -26,8 +26,6 @@ export default function Topbar() {
               HOME
             </Link>
           </li>
-          <li className="topListItem">ABOUT</li>
-          <li className="topListItem">CONTACT</li>
           <li className="topListItem">
             <Link className="link" to="/write">
               WRITE
@@ -43,13 +41,13 @@ export default function Topbar() {
               user.profilePic &&
               <img
                 className="topImg"
-                src={user.prfilePic}
+                src={user.profilePic}
                 alt=""
               />
               ||
               <img
               className="topImg"
-                src="https://img.freepik.com/free-icon/user_318-804790.jpg"
+                src="https://cdn.landesa.org/wp-content/uploads/default-user-image.png"
                 alt="" />
             }
           </Link>

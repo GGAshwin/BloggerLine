@@ -1,5 +1,6 @@
 .header {
-    margin-top: 60px;
+    /* margin-top: 60px; */
+    background-color: #060602;
   }
   
   .headerTitles {
@@ -7,7 +8,8 @@
     flex-direction: column;
     align-items: center;
     font-family: "Lora", serif;
-    color: #444;
+    /* color: #444; */
+    color: #fff;
   }
   
   .headerTitleSm {
@@ -20,11 +22,12 @@
     position: absolute;
     top: 20%;
     font-size: 100px;
+    text-decoration: underline;
   }
   
   .headerImg {
     width: 100%;
-    height: 450px;
+    height: 250px;
     margin-top: 80px;
     object-fit: cover;
   }

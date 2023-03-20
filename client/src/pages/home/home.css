@@ -1,5 +1,7 @@
 .home {
     display: flex;
+    min-height: 100vh;
+    background-color: #060602;
   }
 
   @media only screen and (max-width: 600px) {

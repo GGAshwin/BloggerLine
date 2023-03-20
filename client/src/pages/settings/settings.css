@@ -1,5 +1,7 @@
 .settings {
     display: flex;
+    background-color: #060602;
+    color: #fff;
   }
   
   .settingsWrapper {
@@ -21,7 +23,7 @@
   
   .settingsTitleDelete {
     color: red;
-    font-size: 12px;
+    font-size: 20px;
     cursor: pointer;
   }
   
@@ -73,14 +75,21 @@
   }
   
   .settingsForm > input {
-    color: gray;
+    color: #fff;
+    background-color: #060602;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 30px;
     border: none;
+    outline: none;
     border-bottom: 1px solid lightgray;
   }
   
+  .settingsForm > input:focus{
+    border-bottom: none;
+    outline: 2px solid grey;
+  }
+
   .settingsSubmitButton {
     align-self: center;
     width: 150px;

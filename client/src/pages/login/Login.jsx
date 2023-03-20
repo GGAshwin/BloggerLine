@@ -44,11 +44,11 @@ export default function Login() {
         />
         <button className="loginButton" type="submit" disabled={isFetching}>Login</button>
       </form>
-      <button className="loginRegisterButton">
+      {/* <button className="loginRegisterButton">
         <Link to={'/register'}>
           Register
         </Link>
-      </button>
+      </button> */}
     </div>
   );
 }
