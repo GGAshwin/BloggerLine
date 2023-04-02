@@ -7,7 +7,7 @@ const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const catRoute = require('./routes/categories')
-const port = 3001
+const port = process.env.PORT || 3001
 const multer = require('multer')
 // middlewares
 app.use(express.json({limit: '50mb'}));
@@ -44,6 +44,9 @@ app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/post", postRoute)
 app.use("/api/category", catRoute)
+app.get('/*',(req,res)=>{
+    console.log('working!!!');
+})
 
 app.listen(port);
 console.log('listening on port '+port);

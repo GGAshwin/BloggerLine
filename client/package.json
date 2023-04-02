@@ -39,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001/api/"
+  "proxy":"https://dark-pear-bluefish-tux.cyclic.app/api/"
 }
