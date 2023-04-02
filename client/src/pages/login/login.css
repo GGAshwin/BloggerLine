@@ -1,19 +1,17 @@
 .login {
-    height: calc(100vh - 50px);
+    /* height: calc(100vh - 50px); */
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-      ),
-      url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+
+    /* border: 2px solid black; */
   }
   
   .loginTitle {
-    font-size: 50px;
+    font-size: 30px;
   }
   
   .loginForm {
@@ -22,15 +20,17 @@
     flex-direction: column;
   }
   
-  .loginForm > label {
+  /* .loginForm > label {
     margin: 10px 0;
   }
-  
+   */
   .loginInput {
     padding: 10px;
     background-color: white;
     border: none;
     border-radius: 10px;
+
+    border: 2px solid black;
   }
   
   .loginInput:focus {
@@ -46,6 +46,8 @@
     border: none;
     border-radius: 10px;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+
   }
 
   .loginButton:disabled{
@@ -63,4 +65,9 @@
     border: none;
     color: white;
     border-radius: 10px;
+  }
+
+  input{
+    margin-top: 16px;
+    font-family: 'Courier New', Courier, monospace;
   }

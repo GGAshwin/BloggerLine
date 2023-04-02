@@ -26,20 +26,28 @@ router.post('/register', async (req, res) => {
 // Login
 
 router.post('/login', async (req, res) => {
-    try {
-        const user = await User.findOne({ username: req.body.username })
-        !user && res.status(400).json("WRONG CREDENTIALS")
-
-        const validate = await bcrypt.compare(req.body.password, user.password)
-        !validate && res.status(400).json("WRONG CREDENTIALS")
-
-        const { password, ...others } = user._doc
-        res.status(200).json(others)
+    // try {
+    const user = await User.findOne({ username: req.body.username })
+    console.log(user);
+    if(!user){
+        res.status(400).json("WRONG CREDENTIALS")
+        return
     }
-    catch (err) {
-        console.log(err);
-        res.status(500).json(err)
+
+    const validate = await bcrypt.compare(req.body.password, user.password)
+    console.log(validate);
+    if(!validate){
+        res.status(400).json("WRONG CREDENTIALS")
+        return
     }
+
+    const { password, ...others } = user._doc
+    res.status(200).json(others)
+    // }
+    // catch (err) {
+    //     console.log(err);
+    //     res.status(500).json(err)
+    // }
 })
 
 module.exports = router

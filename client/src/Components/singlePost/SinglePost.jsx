@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./singlePost.css";
 import { Context } from "../../context/Context"
 
+
 export default function SinglePost() {
   const location = useLocation()
   const path = location.pathname.split("/")[2];
@@ -14,6 +15,7 @@ export default function SinglePost() {
   const [photo, setPhoto] = useState("")
   const [tags, setTags] = useState([])
   const { user } = useContext(Context)
+
 
 
   useEffect(() => {
@@ -47,11 +49,11 @@ export default function SinglePost() {
     const payload = {
       username: user.username,
       title: title,
-      desc:desc,
+      desc: desc,
       photo: photo
     }
     try {
-      await axios.put('/post/' + path, payload )
+      await axios.put('/post/' + path, payload)
       // window.location.reload()
       setUpdateMode(false)
       e.preventDefault()
@@ -60,8 +62,8 @@ export default function SinglePost() {
     }
   }
 
-  const tagsArr = tags && tags.map((tag)=>{
-    return(
+  const tagsArr = tags && tags.map((tag) => {
+    return (
       <Link className="link" to={`/post?cat=${tag}`}>
         {tag}
       </Link>
@@ -81,9 +83,9 @@ export default function SinglePost() {
         } */}
 
         {
-          updateMode? <input type="text" value={photo} className="singlePostTitleInput" placeholder="Image URL" autoFocus onChange={(e) => {
+          updateMode ? <input type="text" value={photo} className="singlePostTitleInput" placeholder="Image URL" autoFocus onChange={(e) => {
             setPhoto(e.target.value)
-          }} /> :  (
+          }} /> : (
             post.photo &&
             <img
               className="singlePostImg"
@@ -109,12 +111,12 @@ export default function SinglePost() {
             </h1>
           )
         }
-        
-{/* Tags section */}
+
+        {/* Tags section */}
         <div className="tag-section">
-        <ul style={{color:"white"}}>
-          {tagsArr}
-        </ul>
+          <ul style={{ color: "white" }}>
+            {tagsArr}
+          </ul>
         </div>
 
         <div className="singlePostInfo">
@@ -128,7 +130,7 @@ export default function SinglePost() {
           </span>
           <span>{new Date(post.createdAt).toDateString()}</span>
         </div>
-        {updateMode ? <textarea className="singlePostDesc" style={{color:'black'}} value={desc} onChange={(e) => {
+        {updateMode ? <textarea className="singlePostDesc" style={{ color: 'black' }} value={desc} onChange={(e) => {
           setDesc(e.target.value)
         }} /> : (
 

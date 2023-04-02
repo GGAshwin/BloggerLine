@@ -1,19 +1,16 @@
 .register {
-    height: calc(100vh - 50px);
+    /* height: calc(100vh - 50px); */
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-      ),
-      url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-    background-size: cover;
+
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .registerTitle {
-    font-size: 50px;
+    font-size: 30px;
   }
   
   .registerForm {
@@ -31,6 +28,9 @@
     background-color: white;
     border: none;
     border-radius: 10px;
+    border: 2px solid black;
+
+    margin-top: 16px;
   }
   
   .registerInput:focus {
@@ -46,6 +46,8 @@
     border: none;
     border-radius: 10px;
     text-align: center;
+
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .registerLoginButton {
