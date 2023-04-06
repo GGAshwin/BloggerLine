@@ -8,13 +8,13 @@ export default function Login() {
   const userRef = useRef()
   const passwordRef = useRef()
   const { dispatch, isFetching } = useContext(Context)
-  const [ flag, setFlag ] = useState(true)
+  const [flag, setFlag] = useState(true)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     dispatch({ type: "LOGIN_START" })
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post(process.env.REACT_APP_API + "/auth/login", {
         username: userRef.current.value,
         password: passwordRef.current.value
       })
@@ -30,7 +30,7 @@ export default function Login() {
   return (
     <div className="login">
       <form className="loginForm" onSubmit={handleSubmit}>
-      <span className="loginTitle">Login</span>
+        <span className="loginTitle">Login</span>
         {/* <label>Username</label> */}
         <input
           className="loginInput"

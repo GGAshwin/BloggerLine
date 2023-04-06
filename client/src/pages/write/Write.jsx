@@ -17,7 +17,7 @@ export default function Write() {
   // get category suggestions
   React.useEffect(() => {
     async function getCat() {
-      const res = await axios.get('/category/')
+      const res = await axios.get(process.env.REACT_APP_API + '/category/')
       const data = res.data
       const catArr = data.map((d) => {
         return (
@@ -68,7 +68,7 @@ export default function Write() {
     // re-render
     setTags(newTags);
   };
-    // Add tags with only names
+  // Add tags with only names
   React.useEffect(() => {
     setCategories(tags.map((tag) => {
       return (tag.id)
@@ -87,7 +87,7 @@ export default function Write() {
       categories
     }
     try {
-      axios.post("/post", newPost)
+      axios.post(process.env.REACT_APP_API + "/post", newPost)
         .then((res) => {
           window.location.replace('/post/' + res.data._id)
         })

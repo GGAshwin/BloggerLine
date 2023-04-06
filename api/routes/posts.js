@@ -73,23 +73,25 @@ router.delete('/:id', async (req, res) => {
 })
 
 // GET ALL POSTS
-router.get("/", async (req,res)=>{
-    const userName = req.query.user
+router.get("/", async (req, res) => {
+    const userName = req.query.username
     const catName = req.query.cat
-    try{
+    try {
         let posts;
-        if(userName){
-            posts = await Post.find({username: userName}).sort({date:-1})
+        if (userName) {
+            posts = await Post.find({ username: userName }).sort({ date: -1 })
         }
-        else if(catName){
-            posts = await Post.find({categories:{
-                $in:[catName]
-            }})
-        }else{
+        else if (catName) {
+            posts = await Post.find({
+                categories: {
+                    $in: [catName]
+                }
+            })
+        } else {
             posts = await Post.find().sort({ createdAt: -1 })
         }
         res.status(200).json(posts)
-    }catch(e){
+    } catch (e) {
         console.log(e);
         res.status(500).json(e)
     }

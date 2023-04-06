@@ -19,7 +19,7 @@ export default function SinglePost() {
 
 
   useEffect(() => {
-    axios.get('/post/' + path)
+    axios.get(process.env.REACT_APP_API + '/post/' + path)
       .then((res) => {
         setPost(res.data)
         setTitle(res.data.title)
@@ -38,7 +38,7 @@ export default function SinglePost() {
       username: user.username
     }
     try {
-      await axios.delete('/post/' + path, { data: payload })
+      await axios.delete(process.env.REACT_APP_API + '/post/' + path, { data: payload })
       window.location.replace('/')
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ export default function SinglePost() {
       photo: photo
     }
     try {
-      await axios.put('/post/' + path, payload)
+      await axios.put(process.env.REACT_APP_API + '/post/' + path, payload)
       // window.location.reload()
       setUpdateMode(false)
       e.preventDefault()

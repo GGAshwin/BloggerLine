@@ -13,7 +13,7 @@ export default function Register() {
     e.preventDefault()
     setError(false)
     try {
-      axios.post("/auth/register", {
+      axios.post(process.env.REACT_APP_API + "/auth/register", {
         username,
         email,
         password
@@ -30,7 +30,7 @@ export default function Register() {
   return (
     <div className="register">
       <form className="registerForm" onSubmit={handleSubmit}>
-      <span className="registerTitle">Register</span>
+        <span className="registerTitle">Register</span>
         {/* <label>Username</label> */}
         <input
           className="registerInput"
@@ -59,7 +59,7 @@ export default function Register() {
           Login
         </Link>
       </button> */}
-      {error && <span style={{color:'red'}}>Something went wrong</span>}
+      {error && <span style={{ color: 'red' }}>Something went wrong</span>}
     </div>
   )
 }

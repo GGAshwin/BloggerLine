@@ -2,16 +2,31 @@ import { Link } from "react-router-dom";
 import "./post.css";
 
 export default function Post({ post }) {
-  let catArr=[]
-   catArr = post.categories.map((c) => {
-    return (
-      <span className="postCat" key={post._id}>
-        <Link className="link" to={`/post?cat=${c}`}>
-          {c}
-        </Link>
-      </span>
-    )
-  })
+  let catArr = []
+  let postCat = post.categories
+
+  if (postCat) {
+    catArr = postCat.map((c) => {
+      return (
+        <span className="postCat" key={post._id}>
+          <Link className="link" to={`/post?cat=${c}`}>
+            {c}
+          </Link>
+        </span>
+      )
+    })
+  }
+
+  // for (let index = 0; index < postCat.length; index++) {
+  //   catArr.push(
+  //     <span className="postCat" key={post._id}>
+  //       <Link className="link" to={`/post?cat=${postCat[index]}`}>
+  //         {postCat[index]}
+  //       </Link>
+  //     </span>
+  //   )
+  // }
+
   // console.log(catArr);
   return (
     <div className="post">

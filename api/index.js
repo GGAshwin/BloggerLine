@@ -9,9 +9,11 @@ const postRoute = require('./routes/posts')
 const catRoute = require('./routes/categories')
 const port = process.env.PORT || 3001
 const multer = require('multer')
+const cors = require('cors')
 // middlewares
-app.use(express.json({limit: '50mb'}));
-
+app.use(express.json({ limit: '50mb' }));
+app.use(cors())
+// "proxy":"https://dark-pear-bluefish-tux.cyclic.app/api/"
 // mongo connection
 mongoose.set('strictQuery', false);
 const connectionParams = {
@@ -35,8 +37,8 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage:storage})
-app.post("/api/upload",upload.single("file"),(req,res)=>{
+const upload = multer({ storage: storage })
+app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("FILE HAS BEEN UPLOADED")
 })
 
@@ -44,9 +46,9 @@ app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/post", postRoute)
 app.use("/api/category", catRoute)
-app.get('/*',(req,res)=>{
+app.get('/*', (req, res) => {
     console.log('working!!!');
 })
 
 app.listen(port);
-console.log('listening on port '+port);
+console.log('listening on port ' + port);

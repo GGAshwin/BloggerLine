@@ -24,11 +24,11 @@ export default function Settings() {
       profilePic: profilePic || user.profilePic
     }
     try {
-      await axios.put('/user/' + user._id, payload)
-      .then((res)=>{
-        console.log(res);
-        dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-      })
+      await axios.put(process.env.REACT_APP_API + '/user/' + user._id, payload)
+        .then((res) => {
+          console.log(res);
+          dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+        })
       // console.log('done');
       window.location.reload()
       // setUpdateMode(false)
@@ -43,7 +43,7 @@ export default function Settings() {
     const data = {
       userId: user._id
     }
-    axios.delete("/user/" + user._id, { data: data })
+    axios.delete(process.env.REACT_APP_API + "/user/" + user._id, { data: data })
     dispatch({ type: "LOGOUT" })
     window.location.replace('/register')
   }
@@ -59,27 +59,18 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             {
-              user.profilePic &&
+              user.profilePic ?
               <img
                 className="topImg"
                 src={user.profilePic}
                 alt=""
               />
-              ||
-              <img
+              :
+              (<img
                 className="topImg"
                 src="https://img.freepik.com/free-icon/user_318-804790.jpg"
-                alt="" />
+                alt="" />)
             }
-            {/* <label htmlFor="fileInput">
-              <i className="settingsPPIcon far fa-user-circle"></i>{" "}
-            </label>
-            <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              className="settingsPPInput"
-            /> */}
           </div>
           <label>Image URL</label>
           <input type="text" placeholder={user.profilePic} name="profilePic" value={profilePic} onChange={(e) => {
