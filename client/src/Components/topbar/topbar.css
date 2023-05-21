@@ -74,3 +74,9 @@
     color: #666;
     cursor: pointer;
   }
+
+  @media only screen and (max-width:600px){
+    .topListItem{
+      font-size: 15px ;
+    }
+  }

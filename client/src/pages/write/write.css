@@ -80,8 +80,32 @@
   color: white;
 }
 
+.ReactTags__tagInputField{
+  padding: 20px;
+  background-color: #060602;
+  border: none;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  width: 300px;
+}
+
 @media only screen and (max-width: 600px) {
   .writeImg {
-    width: 100%;
+    width: 80%;
+    margin-left: 0;
+    padding-left: 20px;
   }
+  .writeFormGroup{
+    margin-left: 0;
+  }
+  .ReactTags__tagInputField{
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #060602;
+    border: none;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    width: 50%;
+  }
+
 }
