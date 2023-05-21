@@ -7,7 +7,7 @@ export default function Register() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(true)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -22,7 +22,7 @@ export default function Register() {
         res.data && window.location.replace('/login')
       })
     } catch (err) {
-      setError(true)
+      setError(false)
       console.log(err);
     }
   }
@@ -59,7 +59,7 @@ export default function Register() {
           Login
         </Link>
       </button> */}
-      {error && <span style={{ color: 'red' }}>Something went wrong</span>}
+      {!error && <span style={{ color: 'red' }}>Something went wrong</span>}
     </div>
   )
 }

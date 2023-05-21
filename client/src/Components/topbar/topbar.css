@@ -77,6 +77,7 @@
 
   @media only screen and (max-width:600px){
     .topListItem{
-      font-size: 15px ;
+      font-size: 17px;
+      padding: 10px;
     }
   }
