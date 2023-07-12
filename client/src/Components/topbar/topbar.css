@@ -81,3 +81,15 @@
       padding: 10px;
     }
   }
+
+  @media only screen and (max-width:500px){
+    .top{
+      justify-content: center;
+    }
+    .topLeft{
+      display: none;
+    }
+    .topListItem{
+      margin-right: 10px;
+    }
+  }
