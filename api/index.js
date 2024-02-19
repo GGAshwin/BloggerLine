@@ -1,5 +1,5 @@
-require('dotenv').config()
-const morgan = require('morgan')
+require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
@@ -40,6 +40,11 @@ const upload = multer({ storage: storage })
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("FILE HAS BEEN UPLOADED")
 })
+
+// Serve robots.txt from the public folder
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
 
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
