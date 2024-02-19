@@ -11,9 +11,8 @@ const port = process.env.PORT || 3001
 const multer = require('multer')
 const cors = require('cors')
 // middlewares
-app.use(express.json({ limit: '50mb' }));
-app.use(cors())
-// "proxy":"https://dark-pear-bluefish-tux.cyclic.app/api/"
+app.use(express.json({ limit: '3mb' }));
+app.use(cors());
 // mongo connection
 mongoose.set('strictQuery', false);
 const connectionParams = {

@@ -38,17 +38,18 @@ export default function Topbar() {
         {user ? (
           <Link className="link" to="/settings">
             {
-              user.profilePic &&
-              <img
-                className="topImg"
-                src={user.profilePic}
-                alt=""
-              />
+              (user.profilePic &&
+                <img
+                  className="topImg"
+                  src={user.profilePic}
+                  alt=""
+                />)
               ||
-              <img
-              className="topImg"
+              (<img
+                className="topImg"
                 src="https://cdn.landesa.org/wp-content/uploads/default-user-image.png"
                 alt="" />
+              )
             }
           </Link>
         ) : (

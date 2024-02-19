@@ -1,6 +1,2 @@
-User being deleted automatically and still being logged in [cleared]
-update user is broken - [the updated user is not reflected immediately but will change after login] [cleared]
-updating only one of the parameters and leaving others blank will change their value to empty string [cleared]
-Tags to be fixed and added [DONE]
-wrong credentials will crash the node server [Done]
 Tags edit [Dont Wanna :<]
+Upload Images
