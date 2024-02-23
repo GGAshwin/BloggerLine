@@ -8,7 +8,7 @@ export default function Post({ post }) {
   if (postCat) {
     catArr = postCat.map((c) => {
       return (
-        <span className="postCat" key={post._id}>
+        <span className="postCat" key={post._id+Math.random()}>
           <Link className="link" to={`/post?cat=${c}`}>
             {c}
           </Link>
@@ -16,18 +16,7 @@ export default function Post({ post }) {
       )
     })
   }
-
-  // for (let index = 0; index < postCat.length; index++) {
-  //   catArr.push(
-  //     <span className="postCat" key={post._id}>
-  //       <Link className="link" to={`/post?cat=${postCat[index]}`}>
-  //         {postCat[index]}
-  //       </Link>
-  //     </span>
-  //   )
-  // }
-
-  // console.log(catArr);
+  
   return (
     <div className="post">
       {
