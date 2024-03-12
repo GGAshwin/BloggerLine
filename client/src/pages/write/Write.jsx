@@ -117,10 +117,6 @@ export default function Write() {
             inputFieldPosition="bottom"
             autocomplete
           />
-          {/* <label htmlFor="fileInput">
-            <i className="writeIcon fas fa-plus"></i>
-          </label>
-          <input id="fileInput" type="file" style={{ display: "none" }} /> */}
           <input
             className="writeInput"
             placeholder="Image URL (Optional)"
