@@ -13,20 +13,52 @@ export default function SinglePost() {
   const [desc, setDesc] = useState("");
   const [photo, setPhoto] = useState("");
   const [tags, setTags] = useState([]);
-  const [newComment, setNewComment] = useState(""); // New state for comment
+  const [newComment, setNewComment] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [avgReviews, setAvgReviews] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(0); // New state for selected rating
   const { user } = useContext(Context);
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_API + "/post/" + path).then((res) => {
-      setPost(res.data);
-      setTitle(res.data.title);
-      setDesc(res.data.desc);
-      setTags(res.data.categories);
-      setPhoto(res.data.photo);
-    });
+    const fetchData = async () => {
+      const response = await axios.get(
+        process.env.REACT_APP_API + "/post/" + path
+      );
+      setPost(response.data);
+      setTitle(response.data.title);
+      setDesc(response.data.desc);
+      setTags(response.data.categories);
+      setPhoto(response.data.photo);
+
+      // Fetch reviews for the post
+      const reviewResponse = await axios.get(
+        process.env.REACT_APP_API + "/post/" + path + "/reviews"
+      );
+      setReviews(reviewResponse.data.reviews);
+      setAvgReviews(reviewResponse.data.averageRating);
+    };
+
+    fetchData();
   }, [path, newComment]);
 
-  // console.log(post);
+  // console.log(user);
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API}/post/${post._id}/reviews`,
+        { userId: user._id, rating: selectedRating } // Assuming rating is always 5
+      );
+        // console.log(response);
+      // Update the post object with the new review
+      setPost({ ...post, reviews: [...post.reviews, response.data] });
+
+    } catch (error) {
+      console.error("Error posting review:", error);
+    }
+  };
 
   const deletePost = async (e) => {
     // console.log(user.username);
@@ -73,17 +105,14 @@ export default function SinglePost() {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-
     if (!newComment) {
-      return; // Prevent empty comment submission
+      return; // Prevent empty review submission
     }
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API}/post/${post._id}/comments`,
         { content: newComment, author: user.username }
       );
-
       // Update the post object with the new comment (assuming response contains the comment)
       setPost({ ...post, comments: [...post.comments, response.data] });
 
@@ -177,14 +206,42 @@ export default function SinglePost() {
           </button>
         )}
       </div>
+
+      {/* Reviews section */}
+      {/* {console.log(reviews)} */}
+      {avgReviews && (
+        <div className="reviewSection">
+          <h3>Average Review</h3>
+          <p style={{ color: "white" }}>{avgReviews}/5</p>
+        </div>
+      )}
+      {user && (
+        <div>
+          <select
+            value={selectedRating}
+            onChange={(e) => setSelectedRating(e.target.value)}
+          >
+            <option value={0}>Select Rating</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <button onClick={handleReviewSubmit}>Submit Rating</button>
+        </div>
+      )}
+
       {/* Comments section */}
       {post.comments && (
         <div className="commentSection">
           <h3>Comments</h3>
           {post.comments.map((comment) => (
             <div key={comment._id} className="comment">
-              <p style={{color:'white'}}>{comment.content}</p>
-              <p className="commentAuthor" style={{color:'red'}}>- {comment.author}</p>
+              <p style={{ color: "white" }}>{comment.content}</p>
+              <p className="commentAuthor" style={{ color: "red" }}>
+                - {comment.author}
+              </p>
             </div>
           ))}
           {user && (

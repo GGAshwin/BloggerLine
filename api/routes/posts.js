@@ -141,4 +141,89 @@ router.post("/:postId/comments", async (req, res) => {
   }
 });
 
+/*Routed for Reviews*/
+// Helper function to calculate average rating
+function calculateAverageRating(post) {
+  if (!post.reviews.length) return 0;
+
+  const totalRating = post.reviews.reduce(
+    (acc, review) => acc + review.rating,
+    0
+  );
+  return totalRating / post.reviews.length;
+}
+
+// POST Review
+router.post("/:postId/reviews", async (req, res) => {
+  try {
+    // Extract post id and review data from request
+    const { postId } = req.params;
+    const { userId, rating } = req.body;
+
+    // Validate required fields and rating range
+    if (!userId || !rating || rating < 1 || rating > 5) {
+      return res.status(400).json({ message: "Invalid request data" });
+    }
+
+    // Check if user already reviewed this post
+    const existingReview = await Post.findOne({
+      _id: postId,
+      reviews: { $elemMatch: { userId } },
+    });
+
+    if (existingReview) {
+      return res
+        .status(403)
+        .json({ message: "You can only review a post once" });
+    }
+
+    // Find the post by its id
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Create a new review object
+    const newReview = {
+      userId,
+      rating,
+    };
+
+    // Push the new review to the post's reviews array
+    post.reviews.push(newReview);
+
+    // Save the updated post with the new review and average rating
+    await post.save();
+
+    // Respond with success message and potentially the updated post
+    res.status(201).json({ message: "Review added successfully", post });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// GET Reviews
+router.get("/:postId/reviews", async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    // Find the post by its id and populate reviews with user information (optional)
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    post.averageRating = calculateAverageRating(post);
+
+    res
+      .status(200)
+      .json({ reviews: post.reviews, averageRating: post.averageRating });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 module.exports = router;
