@@ -33,7 +33,6 @@ export default function SinglePost() {
       const reviewResponse = await axios.get(
         process.env.REACT_APP_API + "/post/" + path + "/reviews"
       );
-      setReviews(reviewResponse.data.reviews);
       setAvgReviews(reviewResponse.data.averageRating);
     };
 
