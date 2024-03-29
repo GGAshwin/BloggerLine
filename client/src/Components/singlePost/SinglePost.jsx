@@ -14,7 +14,6 @@ export default function SinglePost() {
   const [photo, setPhoto] = useState("");
   const [tags, setTags] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [reviews, setReviews] = useState([]);
   const [avgReviews, setAvgReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0); // New state for selected rating
   const { user } = useContext(Context);
