@@ -3,16 +3,20 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
+async function callToNotification(){
+  const response = await fetch("http://localhost:3001/api/notification");
+  const data = await response.json();
+  fetch("http://localhost:3001/api/notification/send")
+  console.log(data);
+}
+
 // Create
 // use async function if operations with database is involved
 router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savePost = await newPost.save();
-    const response = await fetch("http://localhost:3001/api/notification");
-    const data = await response.json();
-    fetch("http://localhost:3001/api/notification/send")
-    console.log(data);
+    callToNotification();
     console.log("logging");
     res.status(200).json(savePost);
   } catch (err) {
