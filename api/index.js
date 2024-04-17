@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
+const notificationsRoute = require('./routes/notification')
 const catRoute = require('./routes/categories')
 const port = process.env.PORT || 3001
 const multer = require('multer')
@@ -50,6 +51,7 @@ app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/post", postRoute)
 app.use("/api/category", catRoute)
+app.use("/api/notification", notificationsRoute)
 app.get('/*', (req, res) => {
     console.log('working!!!');
 })
