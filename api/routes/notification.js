@@ -24,4 +24,9 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Send the notification via Mail
+router.get("/send",async(req,res)=>{
+    console.log("Received");
+})
+
 module.exports = router;

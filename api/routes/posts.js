@@ -6,10 +6,14 @@ const bcrypt = require("bcrypt");
 // Create
 // use async function if operations with database is involved
 router.post("/", async (req, res) => {
-  console.log(req.body);
   const newPost = new Post(req.body);
   try {
     const savePost = await newPost.save();
+    const response = await fetch("http://localhost:3001/api/notification");
+    const data = await response.json();
+    fetch("http://localhost:3001/api/notification/send")
+    console.log(data);
+    console.log("logging");
     res.status(200).json(savePost);
   } catch (err) {
     res.status(500).json(err);
