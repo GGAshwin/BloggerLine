@@ -1,5 +1,14 @@
 const router = require("express").Router();
 const Notification = require("../models/Notification");
+const nodemailer = require("nodemailer");
+
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "bloggerline4@gmail.com",
+    pass: "yryv bdkl tuab xkhw",
+  },
+});
 
 // Get Notification
 router.get("/", async (req, res) => {
@@ -27,6 +36,27 @@ router.post("/", async (req, res) => {
 // Send the notification via Mail
 router.get("/send", async (req, res) => {
   console.log("Received");
+  const allSubs = await Notification.find();
+  const emails = allSubs.map((e) => e.email);
+  const allEmailsAsString = emails.toString();
+
+  var mailOptions = {
+    from: "bloggerline4@gmail.comcom",
+    to: allEmailsAsString,
+    subject: "Sending Email using Node.js",
+    text: "That was easy!",
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+      res.status(200).json("OK");
+    }
+  });
+
+  console.log(mailOptions);
 });
 
 // Unsubscribe from the Notification Service
