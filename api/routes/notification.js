@@ -37,6 +37,10 @@ router.post("/", async (req, res) => {
 router.get("/send", async (req, res) => {
   console.log("Received");
   const allSubs = await Notification.find();
+  console.log(allSubs);
+  if (allSubs.length == 0) {
+    res.status(200).json("No Receipients");
+  }
   const emails = allSubs.map((e) => e.email);
   const allEmailsAsString = emails.toString();
 
@@ -60,12 +64,15 @@ router.get("/send", async (req, res) => {
 });
 
 // Unsubscribe from the Notification Service
-router.delete("/unsubscribe/:id", async (req, res) => {
+router.delete("/unsubscribe/:username", async (req, res) => {
   try {
-    const notification = await Notification.findById(req.params.id);
-    if (notification.username === req.body.username) {
+    const notification = await Notification.find({
+      username: req.params.username,
+    });
+    console.log(notification);
+    if (notification[0]) {
       try {
-        await notification.delete();
+        await notification[0].delete();
         res.status(200).json("UNSUBSCRIPTION SUCCESSFUL");
       } catch (error) {
         console.log(error);

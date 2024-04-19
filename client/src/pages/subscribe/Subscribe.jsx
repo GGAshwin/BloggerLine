@@ -42,6 +42,8 @@ export default function Subscribe() {
 
   function handeUnsubscribe() {
     console.log("Unsubscribing");
+    axios.delete(process.env.REACT_APP_API + "/notification/unsubscribe/" + user.username);
+    setAlreadyPresent(false);
   }
 
   return (
@@ -50,14 +52,7 @@ export default function Subscribe() {
       {alreadyPresent && (
         <button onClick={handeUnsubscribe}>Unsubscribe</button>
       )}
-      {
-      alreadyPresent && 
-      (
-        <h1>
-            You Are Subscribed
-        </h1>
-      )
-      }
+      {alreadyPresent && <h1>You Are Subscribed</h1>}
     </>
   );
 }

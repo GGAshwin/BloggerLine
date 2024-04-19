@@ -4,12 +4,12 @@ const NotificationSchema = new mongoose.Schema({
     username: {
       type: String,
       required: true,
-      unique: false // Or unique: false
+      unique: true // Or unique: false
     },
     email: {
       type: String,
       required: true,
-      unique: false // Or unique: false
+      unique: true // Or unique: false
     }
   }, { timestamps: true });
 
