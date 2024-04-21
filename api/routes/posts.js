@@ -3,11 +3,24 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
-async function callToNotification(){
-  const response = await fetch("http://localhost:3001/api/notification");
-  const data = await response.json();
-  fetch("http://localhost:3001/api/notification/send")
-  console.log(data);
+async function callToNotification() {
+  try {
+    const sendResponse = await fetch(
+      "http://localhost:3001/api/notification/send"
+    );
+
+    if (!sendResponse.ok) {
+      throw new Error(`Error sending notification: ${sendResponse.status}`);
+    }
+
+    const sendData = await sendResponse.json(); // If the server sends a response
+    console.log("Notification sent successfully:", sendData); // Or perform other actions
+
+    return true; // Or a more specific value indicating success
+  } catch (error) {
+    console.error("Error in callToNotification:", error);
+    return false; // Or a specific error value
+  }
 }
 
 // Create
@@ -16,9 +29,18 @@ router.post("/", async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savePost = await newPost.save();
-    callToNotification();
-    console.log("logging");
-    res.status(200).json(savePost);
+    callToNotification()
+      .then((result) => {
+        if (result) {
+          console.log("Notification sent!");
+        } else {
+          console.error("An error occurred while sending notification.");
+        }
+      })
+      .catch((error) => {
+        console.error("Unexpected error:", error);
+      });
+    res.status(201).json(savePost);
   } catch (err) {
     res.status(500).json(err);
   }

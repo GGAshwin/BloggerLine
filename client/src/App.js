@@ -9,6 +9,7 @@ import NotFound from "./pages/notFound/NotFound";
 import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import Subscribe from "./pages/subscribe/Subscribe";
 
 function App() {
   const {user} = useContext(Context);
@@ -19,6 +20,7 @@ function App() {
         <Route>
           <Route path="/" element={<Home />} />
           <Route path="/post" element={<Home />} />
+          <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/register" element={user ? <Home /> : <Register />} />
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/post/:id" element={<Single />} />
