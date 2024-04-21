@@ -43,17 +43,21 @@ export default function Home() {
   return (
     <>
       <Header />
+      <div className="container">
+      <label htmlFor="search" className="label">Search: </label> {/* Label for the search input */}
       <input
         type="search"
         name="search"
         id="search"
         onChange={(e) => setSearchVal(e.target.value)}
+        className="input"
       />
       <select
         name="categories"
         id="categories"
         value={selectedOption}
         onChange={handleSelect}
+        className="select"
       >
         <option value="">Select a tag</option>
         {categories.map((option, index) => (
@@ -62,6 +66,7 @@ export default function Home() {
           </option>
         ))}
       </select>
+      </div>
       <div className="home">
         <Post posts={posts} search={searchVal} category={selectedOption} />
       </div>
