@@ -16,7 +16,7 @@ export default function Subscribe() {
         console.log(response.data);
         const data = response.data;
 
-        data.map((d) => {
+        data.forEach((d) => {
           if (d.username === user.username) {
             setAlreadyPresent(true);
           }
