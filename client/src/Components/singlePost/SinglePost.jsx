@@ -16,6 +16,7 @@ export default function SinglePost() {
   const [newComment, setNewComment] = useState("");
   const [avgReviews, setAvgReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0); // New state for selected rating
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { user } = useContext(Context);
 
   useEffect(() => {
@@ -49,12 +50,13 @@ export default function SinglePost() {
         `${process.env.REACT_APP_API}/post/${post._id}/reviews`,
         { userId: user._id, rating: selectedRating } // Assuming rating is always 5
       );
-        // console.log(response);
+      // console.log(response);
       // Update the post object with the new review
       setPost({ ...post, reviews: [...post.reviews, response.data] });
-
     } catch (error) {
       console.error("Error posting review:", error);
+      console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -227,6 +229,7 @@ export default function SinglePost() {
             <option value={5}>5</option>
           </select>
           <button onClick={handleReviewSubmit}>Submit Rating</button>
+          <div>{errorMessage && errorMessage}</div>
         </div>
       )}
 
