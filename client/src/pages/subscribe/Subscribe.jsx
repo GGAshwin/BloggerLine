@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/Context";
+import "./subscribe.css"; 
 
 export default function Subscribe() {
   const { user } = useContext(Context);
@@ -47,12 +48,15 @@ export default function Subscribe() {
   }
 
   return (
-    <>
-      {!alreadyPresent && <button onClick={handeSubscribe}>Subscribe</button>}
+    <div className="subscribe-container">
+      {!alreadyPresent && <button className="subscribe-button" onClick={handeSubscribe}>Subscribe</button>}
       {alreadyPresent && (
-        <button onClick={handeUnsubscribe}>Unsubscribe</button>
+        <button className="subscribe-button" onClick={handeUnsubscribe}>Unsubscribe</button>
       )}
-      {alreadyPresent && <h1>You Are Subscribed</h1>}
-    </>
+      <p className="subscribe-text">
+        {!alreadyPresent ? "Click here to subscribe for updates about new posts, comments, and ratings" : "Click here to unsubscribe"}
+      </p>
+      {alreadyPresent && <h1 className="subscribed-message">You Are Subscribed</h1>}
+    </div>
   );
 }

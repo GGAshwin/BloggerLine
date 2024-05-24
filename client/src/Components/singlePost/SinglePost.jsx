@@ -209,55 +209,79 @@ export default function SinglePost() {
 
       {/* Reviews section */}
       {/* {console.log(reviews)} */}
-      {avgReviews && (
-        <div className="reviewSection">
-          <h3>Average Review</h3>
-          <p style={{ color: "white" }}>{avgReviews}/5</p>
-        </div>
-      )}
-      {user && (
-        <div>
-          <select
-            value={selectedRating}
-            onChange={(e) => setSelectedRating(e.target.value)}
-          >
-            <option value={0}>Select Rating</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-          </select>
-          <button onClick={handleReviewSubmit}>Submit Rating</button>
-          <div>{errorMessage && errorMessage}</div>
-        </div>
-      )}
+      <div class="heading">
+        <h2>REVIEWS</h2>
+      </div>
 
-      {/* Comments section */}
-      {post.comments && (
-        <div className="commentSection">
-          <h3>Comments</h3>
-          {post.comments.map((comment) => (
-            <div key={comment._id} className="comment">
-              <p style={{ color: "white" }}>{comment.content}</p>
-              <p className="commentAuthor" style={{ color: "red" }}>
-                - {comment.author}
-              </p>
-            </div>
-          ))}
-          {user && (
-            <form onSubmit={handleCommentSubmit}>
-              <textarea
-                className="commentInput"
-                placeholder="Add a comment..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <button type="submit">Post Comment</button>
-            </form>
-          )}
+      <div class="feedback">
+        <div class="feedback-section">
+          <div class="average-review-section">
+            {avgReviews && (
+              <div className="reviewSection">
+                <h3>Average Review</h3>
+                <p>{avgReviews}/5</p>
+              </div>
+            )}
+            {user && (
+              <div class="give-review-section">
+                <h3>Give Your Review</h3>
+                <div class="select-rating-container">
+                  <select
+                    value={selectedRating}
+                    onChange={(e) => setSelectedRating(e.target.value)}
+                  >
+                    <option value={0}>Select Rating</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                  </select>
+                  <button onClick={handleReviewSubmit}>Submit Rating</button>
+                </div>
+                <div>{errorMessage && errorMessage}</div>
+              </div>
+            )}
+          </div>
         </div>
-      )}
+
+        <div class="feedback-section">
+          <div class="comments-section">
+            <h3>Comments</h3>
+            {post.comments && (
+              <div class="commentSection">
+                {post.comments.map((comment) => (
+                  <div key={comment._id} className="comment">
+                    <p>{comment.content}</p>
+                    <p className="commentAuthor">- {comment.author}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="feedback-section">
+          <div class="post-comment-section">
+            {user && (
+              <>
+                <h3>Post Your Comment</h3>
+                <form onSubmit={handleCommentSubmit}>
+                  <div class="commentInput-container">
+                    <textarea
+                      className="commentInput"
+                      placeholder="Add a comment..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit">Post Comment</button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

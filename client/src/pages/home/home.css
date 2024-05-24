@@ -9,3 +9,38 @@
       flex-direction: column;
     }
   }
+
+  .input,
+  .select {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff; 
+    color: #000; 
+    font-size: 20px;
+    margin: 0 10px; 
+  }
+
+  .container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+
+  .input {
+    margin-right: 0px; 
+  }
+
+  .select{
+    width: 150px; 
+  }
+  
+  body {
+    background-color: #000; 
+  }
+
+  .label {
+    font-size: 20px;
+    color: #fff; 
+    margin-right: 10px; 
+  }
