@@ -105,3 +105,106 @@
   .tag-section ul a{
     margin: 0 10px;
   }
+
+  .heading {
+  color: white;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.feedback-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.average-review-section {
+  width: 100%;
+  text-align: center;
+}
+
+.give-review-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.select-rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.select-rating-container select {
+  width: 150px;
+  margin-right: 10px; 
+}
+
+.comments-section {
+  width: 100%;
+  text-align: center; 
+}
+
+.comments-heading {
+  font-size: 1.5em; 
+}
+
+.commentSection {
+  margin-top: 10px;
+  text-align: center; 
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.commentAuthor {
+  font-size: 0.9em;
+  color: yellow; 
+}
+
+.reviewRating {
+  color: yellow; 
+}
+
+.post-comment-section {
+  width: 100%;
+  text-align: center;
+}
+
+.commentInput-container {
+  margin-top: 10px;
+}
+
+.commentInput {
+  width: 40%; 
+  height: 150px; 
+}
+
+.submit-button-container {
+  width: 40%; 
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end; 
+  margin-left: auto; 
+}
+
+.submit-button-container button[type="submit"] {
+  width: 100px; 
+}
+
+  
+  
+  
+  

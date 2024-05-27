@@ -1,0 +1,40 @@
+.subscribe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    height: 100vh;
+    text-align: center;
+    background-color: black; 
+    padding: 20px;
+    color: white; 
+  }
+  
+  .subscribe-button {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .subscribe-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .subscribed-message {
+    color: green;
+    font-size: 2em;
+    margin-top: 20px;
+  }
+  
+  .subscribe-text {
+    font-size: 1.2em;
+    color: white;
+    margin-top: 20px;
+  }
+  
