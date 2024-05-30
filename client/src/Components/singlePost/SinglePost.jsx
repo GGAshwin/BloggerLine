@@ -122,6 +122,12 @@ export default function SinglePost() {
     }
   };
 
+  const [commentsToShow, setCommentsToShow] = useState(2);
+
+  const handleLoadMoreComments = () => {
+    setCommentsToShow((prev) => prev + 2);
+  };
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
@@ -214,73 +220,74 @@ export default function SinglePost() {
       </div>
 
       <div class="feedback">
-        <div class="feedback-section">
-          <div class="average-review-section">
-            {avgReviews && (
-              <div className="reviewSection">
-                <h3>Average Review</h3>
-                <p>{avgReviews}/5</p>
-              </div>
-            )}
-            {user && (
-              <div class="give-review-section">
-                <h3>Give Your Review</h3>
-                <div class="select-rating-container">
-                  <select
-                    value={selectedRating}
-                    onChange={(e) => setSelectedRating(e.target.value)}
-                  >
-                    <option value={0}>Select Rating</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                  </select>
-                  <button onClick={handleReviewSubmit}>Submit Rating</button>
+        <div class="average-review-section">
+          {avgReviews && (
+            <div className="reviewSection">
+              <h3>Average Rating</h3>
+              <p>{avgReviews}/5</p>
+            </div>
+          )}
+        </div>
+
+        <div class="comments-section">
+          <h3>Comments</h3>
+          {post.comments && (
+            <div class="commentSection">
+              {post.comments.slice(0, commentsToShow).map((comment) => (
+                <div key={comment._id} className="comment">
+                  <p className="commentAuthor">{comment.author}</p>
+                  <p>{comment.content}</p>
                 </div>
-                <div>{errorMessage && errorMessage}</div>
-              </div>
-            )}
-          </div>
+              ))}
+              {post.comments.length > commentsToShow && (
+                <button
+                  className="load-more-button"
+                  onClick={handleLoadMoreComments}
+                >
+                  Load More
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
-        <div class="feedback-section">
-          <div class="comments-section">
-            <h3>Comments</h3>
-            {post.comments && (
-              <div class="commentSection">
-                {post.comments.map((comment) => (
-                  <div key={comment._id} className="comment">
-                    <p>{comment.content}</p>
-                    <p className="commentAuthor">- {comment.author}</p>
-                  </div>
-                ))}
+        {user && (
+          <>
+            <div class="give-review-section">
+              <h3>Give Your Rating</h3>
+              <div class="select-rating-container">
+                <select
+                  value={selectedRating}
+                  onChange={(e) => setSelectedRating(e.target.value)}
+                >
+                  <option value={0}>Select Rating</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+                <button onClick={handleReviewSubmit}>Submit Rating</button>
               </div>
-            )}
-          </div>
-        </div>
+              <div>{errorMessage && errorMessage}</div>
+            </div>
 
-        <div class="feedback-section">
-          <div class="post-comment-section">
-            {user && (
-              <>
-                <h3>Post Your Comment</h3>
-                <form onSubmit={handleCommentSubmit}>
-                  <div class="commentInput-container">
-                    <textarea
-                      className="commentInput"
-                      placeholder="Add a comment..."
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                    />
-                  </div>
-                  <button type="submit">Post Comment</button>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
+            <div class="post-comment-section">
+              <h3>Post Your Comment</h3>
+              <form onSubmit={handleCommentSubmit}>
+                <div class="commentInput-container">
+                  <textarea
+                    className="commentInput"
+                    placeholder="Add a comment..."
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                  />
+                </div>
+                <button type="submit">Post Comment</button>
+              </form>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
