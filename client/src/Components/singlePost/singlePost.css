@@ -211,12 +211,14 @@
   margin-right: 10px;
   font-size: 16px;
   border-radius: 5px;
+  font-family: 'Georgia', sans-serif;
 }
 
 .select-rating-container button {
   padding: 5px 10px;
   font-size: 14px;
   border-radius: 5px;
+  font-family: 'Georgia', sans-serif; 
 }
 
 .post-comment-section {
@@ -224,6 +226,10 @@
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.post-comment-section h3 {
+  font-family: 'Georgia', sans-serif; 
 }
 
 .commentInput-container {
@@ -237,11 +243,11 @@
 
 .post-comment-section button {
   margin-top: 10px;
+  font-family: 'Georgia', sans-serif; 
 }
 
-
 .commentInput::placeholder {
-  color: #999; 
+  color: #999;
   font-style: italic;
-  opacity: 1; 
+  opacity: 1;
 }
