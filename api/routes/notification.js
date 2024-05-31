@@ -45,11 +45,38 @@ router.get("/send", async (req, res) => {
   const allEmailsAsString = emails.toString();
 
   var mailOptions = {
-    from: "bloggerline4@gmail.comcom",
+    from: "bloggerline4@gmail.com",
     to: allEmailsAsString,
-    subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    subject: "New Blog Post Published",
+    text: `Hello,
+
+  We are excited to inform you that a new blog post has been published on our platform.
+
+  Stay tuned for more updates and happy reading!
+
+  Best regards,
+  The Blog Team
+  `,
+    html: `
+      <div style="font-family: Arial, sans-serif; color: #333;">
+        <h1 style="color: #007bff;">New Blog Post Published</h1>
+        <p>Dear user,</p>
+        <p>We are excited to inform you that a new blog post has been published on our platform.</p>
+        <p>Stay tuned for more updates and happy reading!</p>
+        <br>
+        <p>Best regards,</p>
+        <p><strong>The Blog Team</strong></p>
+      </div>
+    `
   };
+
+
+//  var mailOptions = {
+//    from: "bloggerline4@gmail.comcom",
+//    to: allEmailsAsString,
+//    subject: "Sending Email using Node.js",
+//    text: "That was easy!",
+//  };
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
