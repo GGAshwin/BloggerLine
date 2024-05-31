@@ -17,7 +17,7 @@ export default function Settings() {
     e.preventDefault()
     const payload = {
       userId: user._id,
-      username: username || user.username,
+      username: username || user.user.username,
       email: email || user.email,
       password: password || user.password,
       profilePic: profilePic || user.profilePic
@@ -76,7 +76,7 @@ export default function Settings() {
             setProfilePic(e.target.value)
           }} />
           <label>Username</label>
-          <input type="text" placeholder={user.username} name="name" onChange={(e) => {
+          <input type="text" placeholder={user.user.username} name="name" onChange={(e) => {
             setUsername(e.target.value)
           }} />
           <label>Email</label>

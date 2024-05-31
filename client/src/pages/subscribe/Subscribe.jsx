@@ -18,7 +18,7 @@ export default function Subscribe() {
         const data = response.data;
 
         data.forEach((d) => {
-          if (d.username === user.username) {
+          if (d.username === user.user.username) {
             setAlreadyPresent(true);
           }
         });
@@ -34,7 +34,7 @@ export default function Subscribe() {
 
   function handeSubscribe() {
     const userData = {
-      username: user.username,
+      username: user.user.username,
       email: user.email,
     };
     axios.post(process.env.REACT_APP_API + "/notification", userData);
