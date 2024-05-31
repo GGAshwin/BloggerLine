@@ -16,7 +16,7 @@ export default function Write() {
 
   // get category suggestions
   React.useEffect(() => {
-    console.log(user);
+    // console.log(user);
     async function getCat() {
       const res = await axios.get(process.env.REACT_APP_API + '/category/')
       const data = res.data
@@ -28,7 +28,7 @@ export default function Write() {
       setCategory(catArr)
     }
     getCat()
-  }, [])
+  }, [user])
 
   // console.log(category);
 
