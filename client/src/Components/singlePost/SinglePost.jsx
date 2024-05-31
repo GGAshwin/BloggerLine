@@ -229,6 +229,25 @@ export default function SinglePost() {
           )}
         </div>
 
+        <div class="give-review-section">
+              <h3>Give Your Rating</h3>
+              <div class="select-rating-container">
+                <select
+                  value={selectedRating}
+                  onChange={(e) => setSelectedRating(e.target.value)}
+                >
+                  <option value={0}>Select Rating</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+                <button onClick={handleReviewSubmit}>Submit Rating</button>
+              </div>
+              <div>{errorMessage && errorMessage}</div>
+            </div>
+
         <div class="comments-section">
           <h3>Comments</h3>
           {post.comments && (
@@ -253,25 +272,6 @@ export default function SinglePost() {
 
         {user && (
           <>
-            <div class="give-review-section">
-              <h3>Give Your Rating</h3>
-              <div class="select-rating-container">
-                <select
-                  value={selectedRating}
-                  onChange={(e) => setSelectedRating(e.target.value)}
-                >
-                  <option value={0}>Select Rating</option>
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                  <option value={4}>4</option>
-                  <option value={5}>5</option>
-                </select>
-                <button onClick={handleReviewSubmit}>Submit Rating</button>
-              </div>
-              <div>{errorMessage && errorMessage}</div>
-            </div>
-
             <div class="post-comment-section">
               <h3>Post Your Comment</h3>
               <form onSubmit={handleCommentSubmit}>
