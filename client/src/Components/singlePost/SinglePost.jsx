@@ -64,7 +64,7 @@ export default function SinglePost() {
     // console.log(user.username);
     e.preventDefault();
     const payload = {
-      username: user.username,
+      username: user.user.username,
     };
     try {
       await axios.delete(process.env.REACT_APP_API + "/post/" + path, {
@@ -78,7 +78,7 @@ export default function SinglePost() {
 
   const handleUpdate = async (e) => {
     const payload = {
-      username: user.username,
+      username: user.user.user.username,
       title: title,
       desc: desc,
       photo: photo,
@@ -111,7 +111,7 @@ export default function SinglePost() {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API}/post/${post._id}/comments`,
-        { content: newComment, author: user.username }
+        { content: newComment, author: user.user.username }
       );
       // Update the post object with the new comment (assuming response contains the comment)
       setPost({ ...post, comments: [...post.comments, response.data] });
