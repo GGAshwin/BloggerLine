@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: bloggerline-client-deployment
+ labels:
+   app: bloggerline-client
+spec:
+ replicas: 3
+ selector:
+   matchLabels:
+     app: bloggerline-client
+ template:
+   metadata:
+     labels:
+       app: bloggerline-client
+   spec:
+     containers:
+     - name: bloggerline-client
+       image: ggashwin/bloggerline-client:1.1.3
+       imagePullPolicy: Always
+       ports:
+       - containerPort: 3000

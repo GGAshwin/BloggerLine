@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: bloggerline-client-service
+spec:
+ selector:
+   app: bloggerline-client
+ ports:
+ - name: http
+   protocol: TCP
+   port: 3000
+   targetPort: 3000
+   nodePort: 30000
+ type: LoadBalancer
