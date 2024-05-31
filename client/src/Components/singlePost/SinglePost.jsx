@@ -78,7 +78,7 @@ export default function SinglePost() {
 
   const handleUpdate = async (e) => {
     const payload = {
-      username: user.user.user.username,
+      username: user.user.username,
       title: title,
       desc: desc,
       photo: photo,
@@ -155,7 +155,7 @@ export default function SinglePost() {
         ) : (
           <h1 className="singlePostTitle">
             {title}
-            {post.username === user?.username && (
+            {post.username === user?.user.username && (
               <div className="singlePostEdit">
                 <i
                   className="singlePostIcon far fa-edit"
