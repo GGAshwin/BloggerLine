@@ -12,6 +12,7 @@ export default function Write() {
   const [tags, setTags] = useState([])
   const [categories, setCategories] = useState([])
   const [category, setCategory] = useState([])
+  //const { user } = useContext(Context)
   const { user } = useContext(Context)
 
   // get category suggestions
