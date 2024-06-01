@@ -16,6 +16,7 @@ export default function Subscribe() {
         );
         console.log(response.data);
         // const data = response.data;
+        //const data = response.data;
         const data = response.data;
 
         data.forEach((d) => {
