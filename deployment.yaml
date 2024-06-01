@@ -16,7 +16,7 @@ spec:
    spec:
      containers:
      - name: bloggerline-client
-       image: ggashwin/bloggerline-client:latest
+       image: full-stackbuild-frontend:latest
        imagePullPolicy: Always
        ports:
        - containerPort: 3000
