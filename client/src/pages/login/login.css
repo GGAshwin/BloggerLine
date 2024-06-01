@@ -3,7 +3,8 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f2f5;
+/*   background-color: #f0f338; */
+   background-color: #f0f2f5;
 }
 
 /* Login Container */
@@ -65,7 +66,8 @@ body {
   border-radius: 5px;
   text-align: center;
   font-family: 'Arial', sans-serif;
-  font-size: 18px;
+/*   font-size: 15px; */
+   font-size: 18px;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 

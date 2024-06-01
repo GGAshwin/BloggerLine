@@ -11,6 +11,19 @@
     font-family: 'Arial', sans-serif; /* Improve font */
 }
 
+/* .subscribe-button {
+/*     padding: 15px 30px; */
+/*     font-size: 1.5em; */
+/*     color: white; */
+/*     background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradient button */ 
+/*     border: none;
+/*     border-radius: 10px; */
+/*     cursor: pointer; */
+/*     transition: background 0.3s ease, transform 0.3s ease; /* Add transition for background and transform */ 
+/*     margin-bottom: 20px; */
+/*     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow */ 
+/* }  */
+
 .subscribe-button {
     padding: 15px 30px;
     font-size: 1.5em;
