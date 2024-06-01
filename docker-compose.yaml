@@ -17,6 +17,8 @@ services:
       - logs:/app/logs
       - ./api:/app
       - /app/node_modules
+    depends_on:
+      - mongodb
     environment:
       - MONGO_URL=mongodb+srv://ashwin:ashwingg123@cluster0.cjcyr.mongodb.net/devOps?retryWrites=true&w=majority
 
