@@ -35,7 +35,7 @@ export default function Subscribe() {
   function handeSubscribe() {
     const userData = {
       username: user.user.username,
-      email: user.email,
+      email: user.user.email,
     };
     axios.post(process.env.REACT_APP_API + "/notification", userData);
     setAlreadyPresent(true);

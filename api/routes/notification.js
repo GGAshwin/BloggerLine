@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
 
 // POST Notification
 router.post("/", async (req, res) => {
+  console.log(req.body);
   try {
     const newNotification = new Notification(req.body);
     console.log(newNotification);
@@ -71,12 +72,12 @@ router.get("/send", async (req, res) => {
   };
 
 
-//  var mailOptions = {
-//    from: "bloggerline4@gmail.comcom",
-//    to: allEmailsAsString,
-//    subject: "Sending Email using Node.js",
-//    text: "That was easy!",
-//  };
+  //  var mailOptions = {
+  //    from: "bloggerline4@gmail.comcom",
+  //    to: allEmailsAsString,
+  //    subject: "Sending Email using Node.js",
+  //    text: "That was easy!",
+  //  };
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -108,7 +109,7 @@ router.delete("/unsubscribe/:username", async (req, res) => {
     } else {
       res.status(401).json("Some Error Occured");
     }
-  } catch (error) {}
+  } catch (error) { }
 });
 
 module.exports = router;
