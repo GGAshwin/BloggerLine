@@ -54,7 +54,7 @@ export default function Subscribe() {
         <button className="subscribe-button" onClick={handeUnsubscribe}>Unsubscribe</button>
       )}
       <p className="subscribe-text">
-        {!alreadyPresent ? "Click here to subscribe for updates about new posts, comments, and ratings" : "Click here to unsubscribe"}
+        {!alreadyPresent ? "Click here to Subscribe for some exciting updates about new posts, comments, and ratings." : "Click here to unsubscribe, see you soon!"}
       </p>
       {alreadyPresent && <h1 className="subscribed-message">You Are Subscribed</h1>}
     </div>
