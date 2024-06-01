@@ -2,39 +2,59 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
+    justify-content: center; /* Center vertically */
     height: 100vh;
     text-align: center;
-    background-color: black; 
+    background: linear-gradient(135deg, #000428 0%, #004e92 100%); /* Gradient background */
     padding: 20px;
-    color: white; 
-  }
-  
-  .subscribe-button {
+    color: white;
+    font-family: 'Arial', sans-serif; /* Improve font */
+}
+
+.subscribe-button {
     padding: 15px 30px;
     font-size: 1.5em;
     color: white;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradient button */
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease; /* Add transition for background and transform */
     margin-bottom: 20px;
-  }
-  
-  .subscribe-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .subscribed-message {
-    color: green;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow */
+}
+
+.subscribe-button:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004080 100%); /* Change gradient on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+}
+
+.subscribed-message {
+    color: #28a745; /* Consistent green color */
     font-size: 2em;
     margin-top: 20px;
-  }
-  
-  .subscribe-text {
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+}
+
+.subscribe-text {
     font-size: 1.2em;
     color: white;
     margin-top: 20px;
-  }
+    max-width: 600px; /* Restrict the width for better readability */
+    line-height: 1.5; /* Improve line spacing */
+    opacity: 0.9; /* Slightly reduce opacity */
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
   

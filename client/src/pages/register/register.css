@@ -1,63 +1,110 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+/* Register Container */
 .register {
-    /* height: calc(100vh - 50px); */
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
 
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  .registerTitle {
-    font-size: 30px;
-  }
-  
-  .registerForm {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .registerForm > label {
-    margin: 10px 0;
-  }
-  
-  .registerInput {
-    padding: 10px;
-    background-color: white;
-    border: none;
-    border-radius: 10px;
-    border: 2px solid black;
+/* Title */
+.registerTitle {
+  font-size: 36px;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+}
 
-    margin-top: 16px;
-  }
-  
-  .registerInput:focus {
-    outline: none;
-  }
-  
-  .registerButton {
-    margin-top: 20px;
-    cursor: pointer;
-    background-color: teal;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
+/* Form */
+.registerForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
 
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  .registerLoginButton {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: lightcoral;
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    color: white;
-    border-radius: 10px;
-  }
+/* Form Labels */
+.registerForm > label {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Input */
+.registerInput {
+  padding: 15px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  font-size: 18px;
+  margin-top: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.registerInput:focus {
+  outline: none;
+  border-color: teal;
+  box-shadow: 0 0 10px rgba(0, 128, 128, 0.2);
+}
+
+/* Register Button */
+.registerButton {
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.registerButton:hover {
+  background-color: #006666;
+  box-shadow: 0 4px 8px rgba(0, 128, 128, 0.3);
+}
+
+/* Login Button */
+.registerLoginButton {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: lightcoral;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.registerLoginButton:hover {
+  background-color: #e57373;
+  box-shadow: 0 4px 8px rgba(255, 87, 34, 0.3);
+}
+
+/* Input general styles */
+input {
+  margin-top: 16px;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+}
