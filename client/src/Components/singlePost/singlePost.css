@@ -1,186 +1,235 @@
 .singlePost {
-    flex: 9;
-    /* background-color: #242424; */
-    background-color: #060602;
-  }
-  
-  .singlePostWrapper {
-    padding: 20px 40px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* padding-right: 0; */
-  }
-  
-  .singlePostImg {
-    width: 100%;
-    height: 300px;
-    border-radius: 5px;
-    object-fit: cover;
-    box-shadow: rgba(159, 159, 167, 0.2) 0px 7px 29px 0px;
-  }
-  
-  .singlePostTitle {
-    text-align: center;
-    margin: 10px;
-    font-size: 28px;
-    font-family: "Lora", sans-serif;
-    color: #fff;
-    font-variant: small-caps;
-  }
-  
-  .singlePostEdit {
-    float: right;
-    font-size: 16px;
-  }
-  
-  .singlePostIcon {
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  
-  .singlePostIcon:first-child {
-    color: teal;
-  }
-  .singlePostIcon:last-child {
-    color: tomato;
-  }
-  
-  .singlePostInfo {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    color: #be9656;
-    font-family: "Varela Round", Arial, Helvetica, sans-serif;
-  }
-  
-  .singlePostAuthor{
-    margin-left: 5px;
-  }
-  
-  .singlePostAuthor a{
-    color: #fff;
-  }
+  flex: 9;
+  /* background-color: #242424; */
+  background-color: #060602;
+}
 
-  .singlePostDesc {
-    /* color: #666; */
-    color: #fff;
-    font-size: 18px;
-    line-height: 25px;
-    /* This is the one you are looking for */
-    white-space: pre-wrap;
-    text-align: justify;
-  }
-  
-  .singlePostDesc::first-letter {
-    margin-left: 20px;
-    font-size: 30px;
-    font-weight: 600;
-  }
+.singlePostWrapper {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* padding-right: 0; */
+}
 
-  .singlePostButton{
-    border: none;
-    background-color: teal;
-    padding: 5px;
-  }
+.singlePostImg {
+  width: 100%;
+  height: 300px;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: rgba(159, 159, 167, 0.2) 0px 7px 29px 0px;
+}
 
-  .link{
-    color: white !important;
-  }
-
-  .tag-section{
-    text-align: center;
-    margin: 10px;
-  }
-
-  .tag-section ul{
-    padding: 0;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .tag-section ul a{
-    margin: 0 10px;
-  }
-
-  .heading {
-  color: white;
+.singlePostTitle {
   text-align: center;
-  margin: 20px 0;
+  margin: 10px;
+  font-size: 28px;
+  font-family: "Lora", sans-serif;
+  color: #fff;
+  font-variant: small-caps;
+}
+
+.singlePostEdit {
+  float: right;
+  font-size: 16px;
+}
+
+.singlePostIcon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.singlePostIcon:first-child {
+  color: teal;
+}
+.singlePostIcon:last-child {
+  color: tomato;
+}
+
+.singlePostInfo {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #be9656;
+  font-family: "Varela Round", Arial, Helvetica, sans-serif;
+}
+
+.singlePostAuthor {
+  margin-left: 5px;
+}
+
+.singlePostAuthor a {
+  color: #fff;
+}
+
+.singlePostDesc {
+  /* color: #666; */
+  color: #fff;
+  font-size: 18px;
+  line-height: 25px;
+  /* This is the one you are looking for */
+  white-space: pre-wrap;
+  text-align: justify;
+}
+
+.singlePostDesc::first-letter {
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.singlePostButton {
+  border: none;
+  background-color: teal;
+  padding: 5px;
+}
+
+.link {
+  color: white !important;
+}
+
+.tag-section {
+  text-align: center;
+  margin: 10px;
+}
+
+.tag-section ul {
+  padding: 0;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tag-section ul a {
+  margin: 0 10px;
+}
+
+.heading {
+  color: white;
+  text-align: left;
+  margin: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .feedback {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: white;
-}
-
-.feedback-section {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start; 
-  margin-bottom: 20px;
   flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .average-review-section {
+  width: 47%;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+}
+
+.reviewSection {
+  background-color: #333;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.reviewSection h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.reviewSection p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.comments-section {
   width: 100%;
-  text-align: center;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.comments-section .commentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.comment {
+  width: 45%;
+  background-color: #444;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.commentAuthor {
+  font-size: 1em;
+  font-weight: bold;
+  color: #ffcc00;
+  margin-bottom: 5px;
+}
+
+.load-more-button {
+  margin-top: 10px;
+  margin-right: auto;
+  background-color: #ffcc00;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.load-more-button:hover {
+  background-color: #ffd700;
 }
 
 .give-review-section {
   width: 100%;
-  text-align: center;
   margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .select-rating-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-top: 10px;
 }
 
 .select-rating-container select {
-  width: 150px;
-  margin-right: 10px; 
+  width: 200px;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  font-family: 'Georgia', sans-serif;
 }
 
-.comments-section {
-  width: 100%;
-  text-align: center; 
-}
-
-.comments-heading {
-  font-size: 1.5em; 
-}
-
-.commentSection {
-  margin-top: 10px;
-  text-align: center; 
-}
-
-.comment {
-  margin-bottom: 10px;
-}
-
-.commentAuthor {
-  font-size: 0.9em;
-  color: yellow; 
-}
-
-.reviewRating {
-  color: yellow; 
+.select-rating-container button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  font-family: 'Georgia', sans-serif; 
 }
 
 .post-comment-section {
   width: 100%;
-  text-align: center;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post-comment-section h3 {
+  font-family: 'Georgia', sans-serif; 
 }
 
 .commentInput-container {
@@ -188,23 +237,17 @@
 }
 
 .commentInput {
-  width: 40%; 
-  height: 150px; 
+  width: 50%;
+  height: 100px;
 }
 
-.submit-button-container {
-  width: 40%; 
+.post-comment-section button {
   margin-top: 10px;
-  display: flex;
-  justify-content: flex-end; 
-  margin-left: auto; 
+  font-family: 'Georgia', sans-serif; 
 }
 
-.submit-button-container button[type="submit"] {
-  width: 100px; 
+.commentInput::placeholder {
+  color: #999;
+  font-style: italic;
+  opacity: 1;
 }
-
-  
-  
-  
-  
