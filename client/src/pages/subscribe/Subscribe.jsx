@@ -15,6 +15,7 @@ export default function Subscribe() {
           process.env.REACT_APP_API + "/notification"
         );
         console.log(response.data);
+        // const data = response.data;
         const data = response.data;
 
         data.forEach((d) => {
