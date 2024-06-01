@@ -8,7 +8,7 @@ describe('UI tests', function () {
   this.timeout(30000);
 
   before(async function () {
-    driver = await new Builder().forBrowser('chrome').build();
+    driver = await new Builder().forBrowser('MicrosoftEdge').build();
   });
 
   after(async function () {
@@ -78,12 +78,12 @@ it('should select a rating and submit it', async function () {
     expect(value).to.equal('React');
   });
 
-  // it('should click on the write button', async function () {
-  //   await driver.get('http://localhost:3000');
+  it('should click on the write button', async function () {
+    await driver.get('http://localhost:3000');
 
-  //   const loginLink = await driver.findElement(By.linkText('WRITE'));
-  //   await loginLink.click();
-  // });
+    const loginLink = await driver.findElement(By.linkText('WRITE'));
+    await loginLink.click();
+  });
 
   // it('should log in successfully with valid credentials', async function () {
   

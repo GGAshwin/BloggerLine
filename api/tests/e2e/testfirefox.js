@@ -8,7 +8,7 @@ describe('UI tests', function () {
   this.timeout(30000);
 
   before(async function () {
-    driver = await new Builder().forBrowser('chrome').build();
+    driver = await new Builder().forBrowser('firefox').build();
   });
 
   after(async function () {
