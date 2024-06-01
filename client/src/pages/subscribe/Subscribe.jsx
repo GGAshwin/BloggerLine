@@ -31,6 +31,7 @@ export default function Subscribe() {
     fetchData();
   }, [user]);
 
+  // console.log(alreadyPresent);
   console.log(alreadyPresent);
 
   function handeSubscribe() {
