@@ -178,4 +178,10 @@ it('should select a rating and submit it', async function () {
   //   const currentUrl = await driver.getCurrentUrl();
   //   expect(currentUrl).to.equal('http://localhost:3000');
   // });
+
+
+  //   // Verify if the user is redirected to the login page
+  //   const currentUrl = await driver.getCurrentUrl();
+  //   expect(currentUrl).to.equal('http://localhost:3000');
+  // });
 });
