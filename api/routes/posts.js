@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 async function callToNotification() {
   try {
     const sendResponse = await fetch(
-      "http://localhost:3001/api/notification/send"
+      "http://54.145.74.209:3000/api/notification/send"
     );
 
     if (!sendResponse.ok) {
@@ -189,6 +189,8 @@ router.post("/:postId/reviews", async (req, res) => {
     // Extract post id and review data from request
     const { postId } = req.params;
     const { userId, rating } = req.body;
+
+    console.log(req.body);
 
     // Validate required fields and rating range
     if (!userId || !rating || rating < 1 || rating > 5) {

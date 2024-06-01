@@ -45,20 +45,20 @@
     const handleReviewSubmit = async (e) => {
       e.preventDefault();
 
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_API}/post/${post._id}/reviews`,
-          { userId: user._id, rating: selectedRating } // Assuming rating is always 5
-        );
-        // console.log(response);
-        // Update the post object with the new review
-        setPost({ ...post, reviews: [...post.reviews, response.data] });
-      } catch (error) {
-        console.error("Error posting review:", error);
-        console.log(error.response.data.message);
-        setErrorMessage(error.response.data.message);
-      }
-    };
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API}/post/${post._id}/reviews`,
+        { userId: user._id, rating: selectedRating } // Assuming rating is always 5
+      );
+      // console.log(response);
+      // Update the post object with the new review
+      setPost({ ...post, reviews: [...post.reviews, response.data] });
+    } catch (error) {
+      console.error("Error posting review:", error);
+      console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
+    }
+  };
 
     const deletePost = async (e) => {
       // console.log(user.username);
@@ -148,35 +148,35 @@
             )
           )}
 
-          {updateMode ? (
-            <input
-              type="text"
-              value={title}
-              className="singlePostTitleInput"
-              autoFocus
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-            />
-          ) : (
-            <h1 className="singlePostTitle">
-              {title}
-              {post.username === user?.username && (
-                <div className="singlePostEdit">
-                  <i
-                    className="singlePostIcon far fa-edit"
-                    onClick={() => {
-                      setUpdateMode(true);
-                    }}
-                  ></i>
-                  <i
-                    className="singlePostIcon far fa-trash-alt"
-                    onClick={deletePost}
-                  ></i>
-                </div>
-              )}
-            </h1>
-          )}
+        {updateMode ? (
+          <input
+            type="text"
+            value={title}
+            className="singlePostTitleInput"
+            autoFocus
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+        ) : (
+          <h1 className="singlePostTitle">
+            {title}
+            {post.username === user?.user.username && (
+              <div className="singlePostEdit">
+                <i
+                  className="singlePostIcon far fa-edit"
+                  onClick={() => {
+                    setUpdateMode(true);
+                  }}
+                ></i>
+                <i
+                  className="singlePostIcon far fa-trash-alt"
+                  onClick={deletePost}
+                ></i>
+              </div>
+            )}
+          </h1>
+        )}
 
           {/* Tags section */}
           <div className="tag-section">

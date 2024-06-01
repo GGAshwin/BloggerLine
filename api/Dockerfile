@@ -1,13 +1,13 @@
 FROM node:20.13.1
- 
+
 WORKDIR /app
- 
-COPY package.json .
- 
+
+COPY package*.json ./
+
 RUN npm install
- 
+
 COPY . .
- 
-EXPOSE 80
- 
-CMD ["npm", "start"]
+
+EXPOSE 3001
+
+CMD ["node", "index.js"]

@@ -1,12 +1,5 @@
 version: "3.8"
 services:
-  mongodb:
-    image: "mongo"
-    volumes:
-      - data:/data/db
-    ports:
-      - "27017:27017"
-
   backend:
     build:
       context: ./api
@@ -16,7 +9,6 @@ services:
     volumes:
       - logs:/app/logs
       - ./api:/app
-      - /app/node_modules
     environment:
       - MONGO_URL=mongodb+srv://ashwin:ashwingg123@cluster0.cjcyr.mongodb.net/devOps?retryWrites=true&w=majority
 
