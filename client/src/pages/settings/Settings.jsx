@@ -16,14 +16,14 @@ export default function Settings() {
   const handleUpdate = async (e) => {
     e.preventDefault()
     const payload = {
-      userId: user._id,
+      userId: user.user._id,
       username: username || user.user.username,
-      email: email || user.email,
-      password: password || user.password,
-      profilePic: profilePic || user.profilePic
+      email: email || user.user.email,
+      password: password || user.user.password,
+      profilePic: profilePic || user.user.profilePic
     }
     try {
-      await axios.put(process.env.REACT_APP_API + '/user/' + user._id, payload)
+      await axios.put(process.env.REACT_APP_API + '/user/' + user.user._id, payload)
         .then((res) => {
           console.log(res);
           dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
@@ -42,7 +42,7 @@ export default function Settings() {
     const data = {
       userId: user._id
     }
-    axios.delete(process.env.REACT_APP_API + "/user/" + user._id, { data: data })
+    axios.delete(process.env.REACT_APP_API + "/user/" + user.user._id, { data: data })
     dispatch({ type: "LOGOUT" })
     window.location.replace('/register')
   }
@@ -61,7 +61,7 @@ export default function Settings() {
               user.profilePic ?
               <img
                 className="topImg"
-                src={user.profilePic}
+                src={user.user.profilePic}
                 alt=""
               />
               :
@@ -72,7 +72,7 @@ export default function Settings() {
             }
           </div>
           <label>Image URL</label>
-          <input type="text" placeholder={user.profilePic} name="profilePic" value={profilePic} onChange={(e) => {
+          <input type="text" placeholder={user.user.profilePic} name="profilePic" value={profilePic} onChange={(e) => {
             setProfilePic(e.target.value)
           }} />
           <label>Username</label>
@@ -80,7 +80,7 @@ export default function Settings() {
             setUsername(e.target.value)
           }} />
           <label>Email</label>
-          <input type="email" placeholder={user.email} name="email" value={email} onChange={(e) => {
+          <input type="email" placeholder={user.user.email} name="email" value={email} onChange={(e) => {
             setEmail(e.target.value)
           }} />
           <label>Password</label>
