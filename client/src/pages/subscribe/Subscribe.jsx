@@ -24,6 +24,7 @@ export default function Subscribe() {
           }
         });
       } catch (error) {
+        // console.error(error);
         console.error(error);
       }
     };
