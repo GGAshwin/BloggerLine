@@ -48,7 +48,7 @@
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_API}/post/${post._id}/reviews`,
-          { userId: user._id, rating: selectedRating } // Assuming rating is always 5
+          { userId: user.user._id, rating: selectedRating } // Assuming rating is always 5
         );
         // console.log(response);
         // Update the post object with the new review
