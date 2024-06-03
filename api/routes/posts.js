@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 async function callToNotification() {
   try {
     const sendResponse = await fetch(
-      "http://54.145.74.209:3000/api/notification/send"
+      "http://54.145.74.209:3001/api/notification/send"
     );
 
     if (!sendResponse.ok) {
