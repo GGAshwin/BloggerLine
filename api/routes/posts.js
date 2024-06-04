@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
+const UnApprovedPost = require("../models/UnapprovedPosts");
 const bcrypt = require("bcrypt");
+const verifyAdmin = require("../middleware/isAdmin.");
 
 async function callToNotification() {
   try {
@@ -26,20 +28,10 @@ async function callToNotification() {
 // Create
 // use async function if operations with database is involved
 router.post("/", async (req, res) => {
-  const newPost = new Post(req.body);
+  const newPost = new UnApprovedPost(req.body);
   try {
     const savePost = await newPost.save();
-    callToNotification()
-      .then((result) => {
-        if (result) {
-          console.log("Notification sent!");
-        } else {
-          console.error("An error occurred while sending notification.");
-        }
-      })
-      .catch((error) => {
-        console.error("Unexpected error:", error);
-      });
+    console.log("Stored in UnApproved Posts");
     res.status(201).json(savePost);
   } catch (err) {
     res.status(500).json(err);
@@ -72,6 +64,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// GET all unapproved Posts
+router.get("/unapproved", verifyAdmin, async (req, res) => {
+  console.log("Welcome Admin");
+  try {
+    const unapprovedPosts = await UnApprovedPost.find({});
+    res.status(200).json(unapprovedPosts);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // GET
 router.get("/:id", async (req, res) => {
   try {
@@ -84,6 +87,25 @@ router.get("/:id", async (req, res) => {
 });
 
 // DELETE
+
+// Dissapprove
+router.delete("/dissapprove", verifyAdmin, async (req, res) => {
+  try {
+    const { postId } = req.body;
+    const dissapprove = await UnApprovedPost.findById({ _id: postId });
+    if (dissapprove) {
+      console.log(dissapprove);
+      dissapprove.delete();
+      res.status(201).json("BLOG WAS DISSAPPROVED");
+    } else {
+      res.status(404).json("BLOG NOT FOUND");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -129,6 +151,55 @@ router.get("/", async (req, res) => {
 });
 
 // Post Comment
+
+// Approve an UnApproved Post
+router.post("/approve", verifyAdmin, async (req, res) => {
+  try {
+    const { postId } = req.body;
+    const post = await UnApprovedPost.findById({ _id: postId });
+    console.log(post);
+    if (post) {
+      const {
+        createdAt,
+        title,
+        desc,
+        updatedAt,
+        username,
+        categories,
+        comments,
+        photo,
+        reviews,
+      } = post;
+      const newPost = new Post({
+        createdAt,
+        title,
+        desc,
+        updatedAt,
+        username,
+        categories,
+        comments,
+        photo,
+        reviews,
+      });
+      newPost.save();
+      callToNotification()
+        .then((result) => {
+          if (result) {
+            console.log("Notification sent!");
+          } else {
+            console.error("An error occurred while sending notification.");
+          }
+        })
+        .catch((error) => {
+          console.error("Unexpected error:", error);
+        });
+      await post.delete();
+      res.status(201).json(newPost);
+    } else {
+      res.status(404).json("Post not found");
+    }
+  } catch (error) {}
+});
 
 // Endpoint to create a comment
 router.post("/:postId/comments", async (req, res) => {
