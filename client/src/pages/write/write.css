@@ -1,15 +1,7 @@
 .write {
   padding-top: 50px;
-  background: #060602;
+  background: #619ebd;
 }
-
-/* .writeImg {
-  margin-left: 200px;
-  width: 70vw;
-  height: 450px;
-  border-radius: 15px;
-  object-fit: cover;
-} */
 
 .writeImg {
   margin-left: 150px;
@@ -26,116 +18,53 @@
 .writeFormGroup {
   margin-left: 150px;
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
 }
 
-.writeIcon {
-  width: 25px;
-  height: 25px;
-  font-size: 20px;
-  border: 1px solid;
-  border-radius: 50%;
-  color: rgb(129, 125, 125);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* .writeInput {
-  font-size: 30px;
-  border: none;
-  padding: 20px;
-  width: 70vw;
-  background-color: #061522;
-  color: #fff;
-} */
-
 .writeInput {
-  font-size: 30px;
+  font-size: 20px;
   border: none;
   padding: 20px;
   width: 70vw;
-  background-color: #060602;
+  background-color: #619ebd;
   color: #fff;
 }
-
-/* .writeInput::placeholder {
-  color: rgb(170, 185, 185);
-  font-weight: 600;
-}
-
-.writeInput:focus {
-  outline-style: none;
-}
-
-.writeText {
-  width: 70vw;
-  height: 10vh;
-  font-family: inherit;
-  font-size: 20px;
-} */
 
 .writeInput::placeholder {
   color: rgb(189, 185, 185);
   font-weight: 400;
 }
 
-.writeInput:focus {
-  outline-style: none;
-}
-
 .writeText {
   width: 70vw;
-  height: 100vh;
   font-family: inherit;
   font-size: 20px;
 }
 
 .writeSubmit {
-  position: absolute;
-  top: 20px;
-  right: 50px;
   color: white;
-  background-color: teal;
-  padding: 10px;
+  background-color: #080909;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-/* tags */
-/* .ReactTags__selected {
-  color: white;
-}
-
-.ReactTags__tagInputField{
-  padding: 20px;
-  background-color: #060602;
-  border: none;
-  color: #ddd;
-  font-family: 'Courier New', Courier, monospace;
-  width: 300px;
-} */
-
-/* tags */
 .ReactTags__selected {
   color: white;
 }
 
-.ReactTags__tagInputField{
+.ReactTags__tagInputField {
   padding: 20px;
-  background-color: #060602;
+  background-color: #619ebd;
   border: none;
   color: #fff;
   font-family: 'Courier New', Courier, monospace;
   width: 300px;
 }
-
 
 @media only screen and (max-width: 600px) {
   .writeImg {
@@ -143,17 +72,16 @@
     margin-left: 0;
     padding-left: 20px;
   }
-  .writeFormGroup{
+  .writeFormGroup {
     margin-left: 0;
   }
-  .ReactTags__tagInputField{
+  .ReactTags__tagInputField {
     margin-left: 20px;
     padding: 20px;
-    background-color: #060602;
+    background-color: #619ebd;
     border: none;
     color: #fff;
     font-family: 'Courier New', Courier, monospace;
     width: 50%;
   }
-
 }

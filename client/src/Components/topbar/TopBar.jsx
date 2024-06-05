@@ -1,78 +1,78 @@
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import "./topbar.css";
+import { AppBar, Toolbar, Button, Menu, MenuItem, IconButton, Avatar } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export default function Topbar() {
   const { user, dispatch } = useContext(Context);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  function handleLogout() {
-    dispatch({ type: "LOGOUT" })
-    window.location.replace('/login')
-  }
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    window.location.replace('/login');
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <div className="top">
-      <div className="topLeft">
-        <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fab fa-instagram-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
-        <i className="topIcon fab fa-twitter-square"></i>
-      </div>
-      <div className="topCenter">
-        <ul className="topList">
-          <li className="topListItem">
-            <Link className="link" to="/">
-              HOME
-            </Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link" to="/write">
-              WRITE
-            </Link>
-          </li>
-          {user && <li className="topListItem" onClick={handleLogout}>LOGOUT</li>}
-          <li className="topListItem">
-            <Link className="link" to="/subscribe">
-              SUBSCRIBE
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div className="topRight">
-        {user ? (
-          <Link className="link" to="/settings">
-            {
-              (user.profilePic &&
-                <img
-                  className="topImg"
-                  src={user.profilePic}
-                  alt=""
-                />)
-              ||
-              (<img
-                className="topImg"
-                src="https://cdn.landesa.org/wp-content/uploads/default-user-image.png"
-                alt="" />
-              )
-            }
-          </Link>
-        ) : (
-          <ul className="topList">
-            <li className="topListItem">
-              <Link className="link" to="/login">
-                LOGIN
-              </Link>
-            </li>
-            <li className="topListItem">
-              <Link className="link" to="/register">
-                REGISTER
-              </Link>
-            </li>
-          </ul>
-        )}
-        {/* <i className="topSearchIcon fas fa-search"></i> */}
-      </div>
-    </div>
+    <AppBar position="sticky" style={{ backgroundColor: "#333" }}>
+      <Toolbar>
+        <div style={{ flexGrow: 1 }}>
+          <Button color="inherit" component={Link} to="/">Home</Button>
+          <Button color="inherit" component={Link} to="/write">Write</Button>
+          <Button color="inherit" component={Link} to="/subscribe">Subscribe</Button>
+        </div>
+        <IconButton
+          color="inherit"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+        >
+          {user ? (
+            <Avatar
+              alt="User Avatar"
+              src={user.profilePic || "https://media.istockphoto.com/id/1176363686/vector/smiling-young-asian-girl-profile-avatar-vector-icon.jpg?s=612x612&w=0&k=20&c=QuyZJNKexFQgDPr9u91hKieWKOYbaFxPb0b0gwmd-Lo="}
+            />
+          ) : (
+            <AccountCircle />
+          )}
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          {user ? (
+            <>
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={handleClose} component={Link} to="/login">Login</MenuItem>
+              <MenuItem onClick={handleClose} component={Link} to="/register">Register</MenuItem>
+            </>
+          )}
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 }

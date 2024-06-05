@@ -1,17 +1,16 @@
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 import "./header.css";
 
 export default function Header() {
   return (
-    <div className="header">
-      <div className="headerTitles">
-        <span className="headerTitleLg">BLOGGERLINE</span>
-      </div>
-      {/* <img
-        className="headerImg"
-        src="https://images.pexels.com/photos/1167355/pexels-photo-1167355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt=""
-      /> */}
-      <div className="headerImg"></div>
-    </div>
+    <Box className="header" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+      <Typography variant="h2" component="div" className="headerTitleLg">
+        BLOGGERLINE
+      </Typography>
+      <Typography variant="h6" component="div" className="headerTitleSm">
+        your online blogging community
+      </Typography>
+    </Box>
   );
 }

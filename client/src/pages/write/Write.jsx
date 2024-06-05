@@ -1,46 +1,35 @@
 import "./write.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../../context/Context";
 import { WithContext as ReactTags } from 'react-tag-input';
 import axios from "axios";
-
+import { TextField, Button, Box, Snackbar, Alert, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Write() {
-  const [title, setTitle] = useState("")
-  const [desc, setDesc] = useState("")
-  const [photo, setImg] = useState("")
-  const [tags, setTags] = useState([])
-  const [categories, setCategories] = useState([])
-  const [category, setCategory] = useState([])
-  //const { user } = useContext(Context)
-  const { user } = useContext(Context)
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [photo, setImg] = useState("");
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [open, setOpen] = useState(false);
+  const { user } = useContext(Context);
 
-  // get category suggestions
-  React.useEffect(() => {
-    // console.log(user);
+  useEffect(() => {
     async function getCat() {
-      const res = await axios.get(process.env.REACT_APP_API + '/category/')
-      const data = res.data
-      const catArr = data.map((d) => {
-        return (
-          d.name
-        )
-      })
-      setCategory(catArr)
+      const res = await axios.get(process.env.REACT_APP_API + '/category/');
+      const data = res.data;
+      const catArr = data.map((d) => d.name);
+      setCategory(catArr);
     }
-    getCat()
-  }, [user])
+    getCat();
+  }, [user]);
 
-  // console.log(category);
-
-  const suggestions = category.map(cat => {
-    return {
-      id: cat,
-      text: cat
-    };
-  });
-
-  // console.log(suggestions);
+  const suggestions = category.map(cat => ({
+    id: cat,
+    text: cat
+  }));
 
   const KeyCodes = {
     comma: 188,
@@ -63,51 +52,53 @@ export default function Write() {
 
   const handleDrag = (tag, currPos, newPos) => {
     const newTags = tags.slice();
-
     newTags.splice(currPos, 1);
     newTags.splice(newPos, 0, tag);
-
-    // re-render
     setTags(newTags);
   };
-  // Add tags with only names
-  React.useEffect(() => {
-    setCategories(tags.map((tag) => {
-      return (tag.id)
-    }))
-  }, [tags])
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    setCategories(tags.map((tag) => tag.id));
+  }, [tags]);
 
-    console.log(categories);
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const newPost = {
       username: user.user.username,
       title,
       desc,
       photo,
       categories
-    }
+    };
     try {
-      axios.post(process.env.REACT_APP_API + "/post", newPost)
-        .then((res) => {
-          window.location.replace('/post/' + res.data._id)
-        })
+      const res = await axios.post(process.env.REACT_APP_API + "/post", newPost);
+      setOpen(true);
+      // Uncomment the line below to redirect after submission
+      // window.location.replace('/post/' + res.data._id);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <div className="write">
+    <Box className="write" sx={{ paddingTop: "50px", backgroundColor: "#619ebd" }}>
       <img
         className="writeImg"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        src="https://png.pngtree.com/background/20230525/original/pngtree-anime-laptop-set-and-background-r-picture-image_2737437.jpg"
         alt=""
+        style={{ marginLeft: "150px", width: "70vw", height: "250px", borderRadius: "10px", objectFit: "cover" }}
       />
-      <form className="writeForm" onSubmit={handleSubmit}>
-
-        <div className="writeFormGroup">
+      <Box
+        component="form"
+        className="writeForm"
+        onSubmit={handleSubmit}
+        sx={{ position: "relative" }}
+      >
+        <Box className="writeFormGroup" sx={{ marginLeft: "150px", display: "flex", flexDirection: "column" }}>
           <ReactTags
             tags={tags}
             suggestions={suggestions}
@@ -119,34 +110,83 @@ export default function Write() {
             inputFieldPosition="bottom"
             autocomplete
           />
-          <input
+          <TextField
             className="writeInput"
             placeholder="Image URL (Optional)"
             type="text"
-            autoFocus={true}
+            autoFocus
+            variant="outlined"
+            margin="normal"
             onChange={e => setImg(e.target.value)}
+            sx={{ backgroundColor: "#060602", color: "#fff", '& .MuiInputBase-input': { color: '#fff' } }}
           />
-          <input
+          <TextField
             className="writeInput"
             placeholder="Title"
             type="text"
-            autoFocus={true}
+            autoFocus
+            variant="outlined"
+            margin="normal"
             onChange={e => setTitle(e.target.value)}
+            sx={{ backgroundColor: "#060602", color: "#fff", '& .MuiInputBase-input': { color: '#fff' } }}
           />
-        </div>
-        <div className="writeFormGroup">
-          <textarea
+        </Box>
+        <Box className="writeFormGroup" sx={{ marginLeft: "150px", display: "flex", flexDirection: "column" }}>
+          <TextField
             className="writeInput writeText"
             placeholder="Tell your story..."
-            type="text"
-            autoFocus={true}
+            multiline
+            variant="outlined"
+            margin="normal"
+            rows={10}
             onChange={e => setDesc(e.target.value)}
+            sx={{ backgroundColor: "#060602", color: "#fff", '& .MuiInputBase-input': { color: '#fff' } }}
           />
-        </div>
-        <button className="writeSubmit" type="submit">
-          Publish
-        </button>
-      </form>
-    </div>
+          <Button
+            className="writeSubmit"
+            type="submit"
+            variant="contained"
+            sx={{ backgroundColor: "#080909", marginTop: "20px", alignSelf: "flex-start", borderRadius: "10px", padding: "10px 20px" }}
+          >
+            Publish
+          </Button>
+        </Box>
+      </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Centering the Snackbar
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{ 
+            backgroundColor: '#5c6bc0', 
+            color: '#fff', 
+            fontFamily: 'Arial, sans-serif', 
+            fontSize: '18px', 
+            width: '80%',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+            borderRadius: '10px',
+            textAlign: 'center',
+            padding: '20px'
+          }}
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={handleClose}
+              sx={{ marginLeft: '8px' }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+        >
+          Thanks for Submitting! Your contributions are duly noted and are under review for publishing.
+        </Alert>
+      </Snackbar>
+    </Box>
   );
 }
