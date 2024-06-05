@@ -6,7 +6,7 @@ import Post from "../../Components/posts/Posts";
 import "./home.css";
 
 export default function Home() {
-  const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const { search } = useLocation();
@@ -43,29 +43,31 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="container">
-      <label htmlFor="search" className="label">Search: </label> {/* Label for the search input */}
-      <input
-        type="search"
-        name="search"
-        id="search"
-        onChange={(e) => setSearchVal(e.target.value)}
-        className="input"
-      />
-      <select
-        name="categories"
-        id="categories"
-        value={selectedOption}
-        onChange={handleSelect}
-        className="select"
-      >
-        <option value="">Select a tag</option>
-        {categories.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div className="wrapper">
+        <div className="container">
+          <label htmlFor="search" className="label">Search: </label> {/* Label for the search input */}
+          <input
+            type="search"
+            name="search"
+            id="search"
+            onChange={(e) => setSearchVal(e.target.value)}
+            className="input"
+          />
+          <select
+            name="categories"
+            id="categories"
+            value={selectedOption}
+            onChange={handleSelect}
+            className="select"
+          >
+            <option value="">Select a tag</option>
+            {categories.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div className="home">
         <Post posts={posts} search={searchVal} category={selectedOption} />

@@ -1,7 +1,7 @@
 .singlePost {
   flex: 9;
   /* background-color: #242424; */
-  background-color: #060602;
+  background-color: #4682B4;
 }
 
 .singlePostWrapper {
@@ -31,7 +31,7 @@
 
 .singlePostEdit {
   float: right;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .singlePostIcon {
@@ -40,18 +40,19 @@
 }
 
 .singlePostIcon:first-child {
-  color: teal;
+  color: rgb(145, 248, 248);
 }
 .singlePostIcon:last-child {
-  color: tomato;
+  color: rgb(238, 39, 4);
 }
 
 .singlePostInfo {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
-  color: #be9656;
+  font-size: 20px;
+  color: #0c0801;
+  font-style: bold;
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
 
@@ -138,7 +139,7 @@
 }
 
 .reviewSection h3 {
-  font-size: 1.5em;
+  font-size: 1.1em;
   margin-bottom: 10px;
 }
 
@@ -238,15 +239,18 @@
 
 .commentInput {
   width: 50%;
-  height: 100px;
+  height: 170px;
 }
 
 .post-comment-section button {
-  margin-top: 10px;
+  font-size: 1em;
+  margin-top: 20px;
+  margin-bottom: 40px;
   font-family: 'Georgia', sans-serif; 
 }
 
 .commentInput::placeholder {
+  font-size: 1.2em;
   color: #999;
   font-style: italic;
   opacity: 1;
