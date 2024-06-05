@@ -91,7 +91,9 @@ export default function Write() {
     try {
       axios.post(process.env.REACT_APP_API + "/post", newPost)
         .then((res) => {
-          window.location.replace('/post/' + res.data._id)
+          // window.location.replace('/post/' + res.data._id)
+          console.log(res);
+          window.location.replace('/')
         })
     } catch (error) {
       console.log(error);
