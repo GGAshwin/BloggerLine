@@ -2,63 +2,63 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center vertically */
+    justify-content: center; 
     height: 100vh;
     text-align: center;
-    background: linear-gradient(135deg, #000428 0%, #004e92 100%); /* Gradient background */
+    background: linear-gradient(135deg, #000428 0%, #004e92 100%); 
     padding: 20px;
     color: white;
-    font-family: 'Arial', sans-serif; /* Improve font */
+    font-family: 'Arial', sans-serif; 
 }
 
 /* .subscribe-button {
 /*     padding: 15px 30px; */
 /*     font-size: 1.5em; */
 /*     color: white; */
-/*     background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradient button */ 
+/*     background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);  
 /*     border: none;
 /*     border-radius: 10px; */
 /*     cursor: pointer; */
-/*     transition: background 0.3s ease, transform 0.3s ease; /* Add transition for background and transform */ 
+/*     transition: background 0.3s ease, transform 0.3s ease; 
 /*     margin-bottom: 20px; */
-/*     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow */ 
+/*     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 /* }  */
 
 .subscribe-button {
     padding: 15px 30px;
     font-size: 1.5em;
     color: white;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradient button */
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); 
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease; /* Add transition for background and transform */
+    transition: background 0.3s ease, transform 0.3s ease; 
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .subscribe-button:hover {
-    background: linear-gradient(135deg, #0056b3 0%, #004080 100%); /* Change gradient on hover */
-    transform: translateY(-3px); /* Slight lift effect */
+    background: linear-gradient(135deg, #0056b3 0%, #004080 100%); 
+    transform: translateY(-3px); 
 }
 
 .subscribed-message {
-    color: #28a745; /* Consistent green color */
+    color: #28a745; 
     font-size: 2em;
     margin-top: 20px;
-    animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+    animation: fadeIn 1s ease-in-out; 
 }
 
 .subscribe-text {
     font-size: 1.2em;
     color: white;
     margin-top: 20px;
-    max-width: 600px; /* Restrict the width for better readability */
-    line-height: 1.5; /* Improve line spacing */
-    opacity: 0.9; /* Slightly reduce opacity */
+    max-width: 600px; 
+    line-height: 1.5; 
+    opacity: 0.9; 
 }
 
-/* Keyframes for fade-in effect */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
