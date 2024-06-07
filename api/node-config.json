@@ -1,0 +1,29 @@
+{
+  "capabilities": [
+    {
+      "browserName": "chrome",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "firefox",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "MicrosoftEdge",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver"
+    }
+  ],
+  "configuration": {
+    "cleanUpCycle": 2000,
+    "timeout": 30000,
+    "maxSession": 5,
+    "port": 5555,
+    "host": "localhost",
+    "register": true,
+    "registerCycle": 5000,
+    "hub": "http://localhost:4444/grid/register"
+  }
+}

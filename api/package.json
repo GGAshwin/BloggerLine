@@ -1,24 +1,37 @@
 {
   "name": "internshipproject",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:parallel": "concurrently \"npm run test:chrome\" \"npm run test:edge\" \"npm run test:firefox\"",
+    "test:chrome": "mocha tests/test.js",
+    "test:edge": "mocha tests/testedge.js",
+    "test:firefox": "mocha tests/testfirefox.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "chai": "^4.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "mocha": "^8.4.0",
     "mongoose": "^6.9.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.13",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "selenium-webdriver": "^4.21.0"
+  },
+  "devDependencies": {
+    "chromedriver": "^125.0.3",
+    "concurrently": "^8.2.2",
+    "edgedriver": "^5.6.0",
+    "geckodriver": "^4.4.1"
   }
 }
