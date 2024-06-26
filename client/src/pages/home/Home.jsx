@@ -45,7 +45,7 @@ export default function Home() {
       <Header />
       <div className="wrapper">
         <div className="container">
-          <label htmlFor="search" className="label">Search: </label> {/* Label for the search input */}
+          {/* <label htmlFor="search" className="label">Search: </label> */}
           <input
             type="search"
             name="search"

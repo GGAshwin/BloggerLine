@@ -22,6 +22,7 @@ export default function Post({ post }) {
       {
         post.photo &&
         <img
+        loading="lazy"
           className="postImg"
           src={post.photo}
           alt=""
