@@ -62,6 +62,12 @@ const PostSchema = new mongoose.Schema(
       type: [reviewSchema], // Can hold ratingSchema or reviewSchema objects
       required: false, // Adjust as needed (optional reviews)
     },
+    approved:{
+      type: Boolean,
+      required: true,
+      default: false
+
+    }
   },
   { timestamps: true }
 );

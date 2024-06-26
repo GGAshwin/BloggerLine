@@ -28,10 +28,10 @@ async function callToNotification() {
 // Create
 // use async function if operations with database is involved
 router.post("/", async (req, res) => {
-  const newPost = new UnApprovedPost(req.body);
+  const newPost = new Post(req.body);
   try {
     const savePost = await newPost.save();
-    console.log("Stored in UnApproved Posts");
+    console.log(savePost);
     res.status(201).json(savePost);
   } catch (err) {
     res.status(500).json(err);
@@ -68,7 +68,10 @@ router.put("/:id", async (req, res) => {
 router.get("/unapproved", verifyAdmin, async (req, res) => {
   console.log("Welcome Admin");
   try {
-    const unapprovedPosts = await UnApprovedPost.find({});
+    let unapprovedPosts = await Post.find({});
+    unapprovedPosts = unapprovedPosts.filter((post) => {
+      return post.approved === false;
+    });
     res.status(200).json(unapprovedPosts);
   } catch (error) {
     console.error(error);
@@ -92,7 +95,7 @@ router.get("/:id", async (req, res) => {
 router.delete("/dissapprove", verifyAdmin, async (req, res) => {
   try {
     const { postId } = req.body;
-    const dissapprove = await UnApprovedPost.findById({ _id: postId });
+    const dissapprove = await Post.findById({ _id: postId });
     if (dissapprove) {
       console.log(dissapprove);
       dissapprove.delete();
@@ -142,7 +145,12 @@ router.get("/", async (req, res) => {
       });
     } else {
       posts = await Post.find().sort({ createdAt: -1 });
+      console.log(posts);
     }
+    posts = posts.filter((post) => {
+      return post.approved === true;
+    });
+    console.log(posts);
     res.status(200).json(posts);
   } catch (e) {
     console.log(e);
@@ -156,32 +164,11 @@ router.get("/", async (req, res) => {
 router.post("/approve", verifyAdmin, async (req, res) => {
   try {
     const { postId } = req.body;
-    const post = await UnApprovedPost.findById({ _id: postId });
+    const post = await Post.findById({ _id: postId });
     console.log(post);
     if (post) {
-      const {
-        createdAt,
-        title,
-        desc,
-        updatedAt,
-        username,
-        categories,
-        comments,
-        photo,
-        reviews,
-      } = post;
-      const newPost = new Post({
-        createdAt,
-        title,
-        desc,
-        updatedAt,
-        username,
-        categories,
-        comments,
-        photo,
-        reviews,
-      });
-      newPost.save();
+      post.approved = true;
+      post.save();
       callToNotification()
         .then((result) => {
           if (result) {
@@ -193,8 +180,7 @@ router.post("/approve", verifyAdmin, async (req, res) => {
         .catch((error) => {
           console.error("Unexpected error:", error);
         });
-      await post.delete();
-      res.status(201).json(newPost);
+      res.status(201).json(post);
     } else {
       res.status(404).json("Post not found");
     }
