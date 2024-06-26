@@ -1,0 +1,114 @@
+pipeline {
+    agent any
+
+    environment {
+        SONAR_SCANNER_VERSION = '5.0.1.3006'
+        SONAR_SCANNER_HOME = "$HOME/.sonar/sonar-scanner-${SONAR_SCANNER_VERSION}-linux"
+        PATH = "${SONAR_SCANNER_HOME}/bin:$PATH"
+        SONAR_SCANNER_OPTS = "-server"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master', 
+                    url: 'https://github.com/GGAshwin/BloggerLine.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                cd client 
+                npm install
+                cd ../api
+                npm install
+                '''
+            }
+        }
+
+        stage("Build Docker Images"){
+            steps{
+                sh '''
+                docker-compose pull
+                docker compose build
+                docker compose up --build -d
+                '''
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'Docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                        docker login -u $USERNAME -p $PASSWORD
+                        docker-compose push
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Build React') {
+            steps {
+                sh '''
+                cd client
+                npm run build
+                '''
+            }
+        }
+
+        stage('Setup SonarQube Scanner') {
+            steps {
+                script {
+                    sh '''
+                    curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip
+                    unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+                    chmod +x $SONAR_SCANNER_HOME/bin/sonar-scanner
+                    '''
+                }
+            }
+        }
+
+        stage('Verify SonarQube Scanner') {
+            steps {
+                sh 'sonar-scanner --version'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    sh '''
+                    sonar-scanner \
+                    -Dsonar.projectKey=Bloggerline \
+                    -Dsonar.sources=. \
+                    -Dsonar.host.url=http://54.145.74.209:9000 \
+                    -Dsonar.token=sqp_2bd303385bbd5038e952edd8615e357935182a93
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                sudo rm -rf /var/www/bloggerline/*
+                sudo cp -r "${WORKSPACE}/client/build/" /var/www/bloggerline/
+                '''
+            }
+        }
+
+        // stage('Deploy Using Jenkins') {
+        //     steps {
+        //         sh '''
+        //         kubectl delete pods -l app=bloggerline-client --grace-period=0 --force
+        //         kubectl apply -f deployment.yaml
+        //         kubectl apply -f service.yaml
+        //         kubectl get services
+        //         '''
+        //     }
+        // }
+    }
+}
