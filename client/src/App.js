@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 import Subscribe from "./pages/subscribe/Subscribe";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   const {user} = useContext(Context);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/post/:id" element={<Single />} />
           <Route path="/write" element={user ? <Write /> : <Login />} />
           <Route path="/settings" element={user ? <Settings /> : <Login />} />
+          <Route path="/admin" element={user ? <Admin /> : <Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
