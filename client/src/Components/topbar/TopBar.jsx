@@ -63,7 +63,7 @@ export default function Topbar() {
             <Avatar
               alt="User Avatar"
               src={
-                user.user.profilePic ||
+                user?.user?.profilePic ||
                 "https://media.istockphoto.com/id/1176363686/vector/smiling-young-asian-girl-profile-avatar-vector-icon.jpg?s=612x612&w=0&k=20&c=QuyZJNKexFQgDPr9u91hKieWKOYbaFxPb0b0gwmd-Lo="
               }
             />
