@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const jwtSecret = "very_secret_token";
 
 function verifyAdmin(req, res, next) {
-  console.log("called");
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -12,7 +11,6 @@ function verifyAdmin(req, res, next) {
   try {
     // Verify the JWT token using your secret key
     const decoded = jwt.verify(token, jwtSecret);
-    console.log(decoded);
     // Check if the decoded payload contains 'role' with value "admin"
     if (decoded.role !== "admin") {
       return res.status(403).json({ message: "Forbidden (Not Admin)" });

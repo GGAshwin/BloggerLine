@@ -60,7 +60,16 @@ router.put("/:id", async (req, res) => {
     }
   } catch (err) {
     res.status(401).json("YOU CAN UPDATE ONLY YOUR POST");
-    console.log(err);
+    console.error(err);
+  }
+});
+
+// Check is Admin
+router.get("/isadmin", verifyAdmin, async (req, res) => {
+  try {
+    res.status(200).json({ admin: true });
+  } catch (error) {
+    res.status(200).json({ admin: false });
   }
 });
 
@@ -92,9 +101,9 @@ router.get("/:id", async (req, res) => {
 // DELETE
 
 // Dissapprove
-router.delete("/dissapprove", verifyAdmin, async (req, res) => {
+router.delete("/dissapprove/:id", verifyAdmin, async (req, res) => {
   try {
-    const { postId } = req.body;
+    const postId = req.params.id;
     const dissapprove = await Post.findById({ _id: postId });
     if (dissapprove) {
       console.log(dissapprove);

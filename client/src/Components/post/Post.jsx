@@ -3,7 +3,10 @@ import "./post.css";
 
 export default function Post({ post }) {
   let catArr = [];
-  let postCat = post.categories;
+  let postCat;
+  if (post.categories) {
+    postCat = post.categories;
+  }
 
   if (postCat) {
     catArr = postCat.map((c) => {
@@ -19,15 +22,9 @@ export default function Post({ post }) {
 
   return (
     <div className="post">
-      {
-        post.photo &&
-        <img
-        loading="lazy"
-          className="postImg"
-          src={post.photo}
-          alt=""
-        />
-      }
+      {post.photo && (
+        <img loading="lazy" className="postImg" src={post.photo} alt="" />
+      )}
       <div className="postInfo">
         <div className="postCats">{catArr}</div>
         <span className="postTitle">

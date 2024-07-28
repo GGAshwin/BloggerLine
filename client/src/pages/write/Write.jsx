@@ -83,9 +83,6 @@ export default function Write() {
         newPost
       );
       setOpen(true);
-      // Uncomment the line below to redirect after submission
-      // window.location.replace('/post/' + res.data._id);
-      console.log(res);
       setTimeout(() => {
         window.location.replace("/");
       }, 2000);

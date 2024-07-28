@@ -22,10 +22,8 @@ router.get("/", async (req, res) => {
 
 // POST Notification
 router.post("/", async (req, res) => {
-  console.log(req.body);
   try {
     const newNotification = new Notification(req.body);
-    console.log(newNotification);
     const savedNotification = await newNotification.save();
     res.status(201).json(savedNotification); // Created (201) status with the saved notification
   } catch (err) {
